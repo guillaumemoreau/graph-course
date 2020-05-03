@@ -1,0 +1,75 @@
+% myslides.sty
+% GM, 23 juin 2014
+% des définitions souvent utilisées
+
+%\newenvironment{framecol}[1]%
+%{\begin{frame}{#1}\begin{columns}}
+%{\end{columns}\end{frame}}
+
+\newenvironment{frameim}[2]%
+{\begin{frame}{#1}
+  \begin{center}
+    \includegraphics[height=\textheight]{#2}
+}
+{
+  \end{center}
+ \end{frame}
+}
+
+
+% macros provenant de : http://faculty.chicagobooth.edu/donald.eisenstein/more/BeamerLecture.html
+
+\definecolor{darkred}{rgb}{0.7,0,0}
+\definecolor{darkblue}{rgb}{0,0,0.8}
+\definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
+\definecolor{lapislazuli}{rgb}{0.15, 0.38, 0.61}
+\definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
+\definecolor{iris}{rgb}{0.35, 0.31, 0.81}
+
+\newcommand{\alrt}[1]{{\color{alert} #1}}
+\newcommand{\alrtl}[1]{{\color{alert}\large #1}}
+\newcommand{\alrtL}[1]{{\color{alert}\Large #1}}
+\newcommand{\struc}[1]{{\color{structure} #1}}
+\newcommand{\strucL}[1]{{\color{structure}\Large #1}}
+\newcommand{\strucl}[1]{{\color{structure}\large #1}}
+%                                                                                                                             
+\newcommand{\dred}[1]{{\color{darkred} #1}}
+\newcommand{\dredl}[1]{{\color{darkred}\large #1}}
+\newcommand{\dredL}[1]{{\color{darkred}\Large #1}}
+%
+\newcommand{\cover}{\setbeamercovered{invisible}}
+\newcommand{\semicover}{\setbeamercovered{transparent=30}}
+
+\newenvironment{iitemize}{\pause\begin{itemize}[<+->]}{\end{itemize}}
+\newenvironment{ienumerate}{\pause\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{idescription}{\pause\begin{description}[<+->][.]}{\end{description}}
+%                                                                                                                             
+%  These others are fancier, higlightling the current item, making hidden                                                     
+%   items translucent, etc..  Try them out to see.                                                                            
+%                                                                                                                             
+\newenvironment{ialert}{\pause\begin{itemize}[<+-| alert@+>]\blackcolors}{\end{itemize}}
+\newenvironment{ishowalert}{\begin{itemize}[<1-| alert@+>]\blackcolors}{\end{itemize}}
+\newenvironment{itrans}{\semicover\pause\begin{itemize}[<+->]}{\end{itemize}\cover}
+\newenvironment{itransalert}{\semicover\begin{itemize}[<+-| alert@+>]\blackcolors}{\end{itemize}\cover}
+
+% réucpéré depuis : http://tex.stackexchange.com/questions/28760/custom-beamer-blocks-for-pros-and-cons
+
+\newenvironment<>{codeblock}[1]{%
+  \begin{actionenv}#2%
+      \def\insertblocktitle{#1}%
+      \par%
+      \mode<presentation>{%
+        \setbeamercolor{block title}{fg=white,bg=iris}
+       \setbeamercolor{block body}{fg=black,bg=bubbles!50}
+%       \setbeamercolor{itemize item}{fg=orange!20!black}
+%       \setbeamertemplate{itemize item}[triangle]
+     }%
+      \usebeamertemplate{block begin}}
+    {\par\usebeamertemplate{block end}\end{actionenv}}
+
+
+% % couleur des liens hypperref
+
+\hypersetup{urlcolor=iris}
+
+\newcommand{\urldoc}[1]{\href{#1}{\beamergotobutton{doc}}}

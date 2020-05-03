@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                        %%
+%%                 Support de cours Programmation orientée objet                  %%
+%%                                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Guillaume Moreau (EC Nantes)
+%% création : 21/06/2004
+%% dernière modification : 23/06/2004
+%% historique :
+
+%% il faut fixer l'URL base pour que les liens relatifs fonctionnent...
+%% bizaremment fichu mais c'est comme ça.
+
+\documentclass[allowframebreaks,xcolor=dvipsnames]{beamer}
+
+\mode<presentation>
+{
+\usetheme{Antibes}
+  % or ...
+
+  %\setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+\useoutertheme{infolines}
+\usecolortheme[named=RoyalBlue]{structure}
+
+\uselanguage{french}
+\languagepath{french}
+\deftranslation[to=french]{definition}{définition}
+\deftranslation[to=french]{Definition}{D\'efinition}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage[french]{babel}
+% or whatever
+
+%% pour afficher le plan à chaque début de section
+%\AtBeginSection[]{
+%  \begin{frame}{Plan}
+%  \tiny \tableofcontents[currentsection, hideothersubsections]
+%  \end{frame}
+%}
+
+
+%% tout ce qui est relatifs aux extraits de code
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstloadlanguages{C++}
+\lstset{% paramètres généraux des listings
+	language=C++,
+	basicstyle=\ttfamily\tiny, %% style général : chasse fixe, taille minimale
+	keywordstyle=\color{webgreen}\bfseries, % les mots clés en vert et gras
+	stringstyle=\color{blue}, % les chaines de caractères en bleu
+	commentstyle=\color{webbrown},
+	autogobble
+}
+
+
+\usepackage{myslides}
+
+%\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Option INFO / MADIS] % (optional, use only with long paper titles)
+{Mathématiques discrètes}
+
+\author[G. Moreau]{Guillaume Moreau\\
+\texttt{guillaume.moreau@ec-nantes.fr}}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Ecole Centrale de Nantes] % (optional, but mostly needed)
+{
+  Ecole Centrale de Nantes
+}
+
+\date % (optional)
+{Septembre 2020}
+
+\subject{Théorie et algorithmique des graphes}
+
+
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{* }{rgb}{0,.5,0}
+\definecolor{. }{rgb}{.6,0,0}
+
+% option d'affiche de table des matières : http://mirror.unl.edu/ctan/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+% section 10.5
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Plan}
+       \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/show/hide,subsubsectionstyle=hide/hide]
+   \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+	\begin{frame}
+		\frametitle{Plan}
+		\tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/show/hide]
+	\end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Plan du cours}
+  \tableofcontents[hideallsubsections]
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+
+\section{Introduction}
+\input{introduction}
+
+
+
