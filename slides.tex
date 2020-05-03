@@ -35,11 +35,15 @@
 \setbeamertemplate{itemize subitem}[triangle]
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 % or whatever
 
 \usepackage[french]{babel}
 % or whatever
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphdrawing.force}
+\usetikzlibrary{arrows}
 
 %% pour afficher le plan à chaque début de section
 %\AtBeginSection[]{
@@ -132,5 +136,8 @@
 \section{Introduction}
 \input{introduction}
 
+\section{Définitions}
+\input{definitions}
 
 
+\end{document}
