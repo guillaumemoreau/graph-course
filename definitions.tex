@@ -11,8 +11,6 @@
 
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
-            \tikzset{edge/.style = {->}}
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -41,7 +39,6 @@
 
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -64,8 +61,6 @@
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
-            \tikzset{edge/.style = {->}}
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -81,7 +76,6 @@
             \node (l) at (1,-2) {4 et 3 sont adjacents à 2};
         \end{tikzpicture}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -105,7 +99,6 @@
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -133,8 +126,6 @@
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
-            \tikzset{edge/.style = {->}}
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
@@ -159,38 +150,33 @@
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
-            \tikzstyle{edge}=[->]
-            \tikzstyle{chemin}=[->,very thick,blue]
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
             \node[lettre] (4) at (1,0) {4};
             \node[lettre] (5) at (2,0) {5};
             \node[lettre] (6) at (2,-1) {6}; 
-            \draw[chemin] (1) -> (4);
+            \draw[oeedge] (1) -> (4);
             \draw[edge] (1) -> (2) -> (4);
             \draw[edge] (2) -> (3);
             \draw[edge] (6) -> (5);
-            \draw[chemin] (4.260) -> (3.100);
+            \draw[oeedge] (4.260) -> (3.100);
             \draw[edge] (3.800) -> (4.280);
             \node (l) at (1,-2) {$(1,4,3)$ est un chemin};
         \end{tikzpicture}
         \begin{tikzpicture}
-            \tikzstyle{lettre}=[circle,draw,text=blue]
-            \tikzstyle{chemin}=[very thick,blue]
             \node[lettre] (1) at (0,0)  {1};
             \node[lettre] (2) at (0,-1) {2};
             \node[lettre] (3) at (1,-1) {3};
             \node[lettre] (4) at (1,0) {4};
             \node[lettre] (5) at (2,0) {5};
             \node[lettre] (6) at (2,-1) {6}; 
-            \draw[chemin] (1) -- (4);
+            \draw[eedge] (1) -- (4);
             \draw (1) -- (2);
             \draw (2) -- (4);
-            \draw[chemin] (2) -- (3);
+            \draw[eedge] (2) -- (3);
             \draw (6) -- (5);
-            \draw[chemin] (4) -- (3);
+            \draw[eedge] (4) -- (3);
             \node (l) at (1,-2) {$(1,2,3,4)$ est un chemin};
         \end{tikzpicture}
     \end{example}
