@@ -15,7 +15,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Opération de base}
+\begin{frame}{Opérations de base}
     \begin{itemize}
         \item Créer un graphe à $n$ sommets, sans arcs
         \item Ajouter un arc
@@ -221,3 +221,53 @@
     \pause 
     \alert{Dans tous les cas, les coûts de manipulation sont différents ! Il va falloir faire un compromis entre coût mémoire / coût en temps de calcul / coût en développement des algorithmes}
 \end{frame}
+
+% aborder l'efficacité des représentations 
+
+\begin{frame}{Efficacité des représentations}
+    \begin{center}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+            Représentation & Espace & $(i,j)\in A$ ? & $\Gamma^+(a)$ \\
+            \hline
+            liste d'arcs & ${\cal O}(m)$ & ${\cal O}(m)$ & ${\cal O}(m)$ \\
+            \hline
+            matrice d'adjacences & ${\cal O}(n^2)$ & ${\cal O}(1)$ & ${\cal O}(n)$  \\
+            \hline  
+            tableau d'adjacences & ${\cal O}(n+m)$ & ${\cal O}(\Gamma(i))$ &  ${\cal O}(\Gamma(i))$ \\ 
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{itemize}
+        \item Questions
+        \begin{itemize}
+            \item Que se passe-t-il si on cherche $\Gamma^-(i)$ ?
+            \item Que se passe-t-il si la liste d'arcs est triée ?
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Efficacité des représentations}
+    \begin{center}
+        \begin{tabular}{|l|c|c|c|}
+            \hline
+            Représentation & Espace & $(i,j)\in A$ ? & $\Gamma^+(a)$ \\
+            \hline
+            liste d'arcs & ${\cal O}(m)$ & ${\cal O}(m)$ & ${\cal O}(m)$ \\
+            \hline 
+            \textcolor{blue}{liste triée} & ${\cal O}(m)$ & ${\cal O}(\log n + \log \Gamma^+(i))$ & ${\cal O}(\log n + \Gamma^+(i))$ \\
+            \hline
+            $M_{i,j}$ & ${\cal O}(n^2)$ & ${\cal O}(1)$ & ${\cal O}(n)$  \\
+            \hline  
+            $Adj[i]$ & ${\cal O}(n+m)$ & ${\cal O}(\Gamma(i))$ &  ${\cal O}(\Gamma(i))$ \\ 
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{itemize}
+        \item En pratique, les graphes sont rarement denses 
+    \end{itemize}
+\end{frame}
+
+
