@@ -112,28 +112,38 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Forêts de parcours}
-    \begin{algorithmic}[1]
-        \Function{visite}{$i$ : sommet}
-        \State vu[i] \gets true
-        \For{$j \in Adj[i]$}
-            \If{$vu[j] = false$}
-                \State \textcolor{blue}{parent[j] \gets i}
-                \State visite(j)
-            \EndIf
-        \EndFor
-        \EndFunction
-        \State vu \gets [$false$,...,$false$]
-        \State \textcolor{blue}{parent \gets [$-1$,...,$-1$]}
-        \For{$i \in S$}
-            \If{$vu[i] = false$}
-            \State visite(i)
-            \EndIf
-        \EndFor
-        \end{algorithmic}
 
+
+\begin{frame}[fragile]
+\frametitle{Algorithme}
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            \begin{algorithmic}[1]
+                \Function{visite}{$i$ : sommet}
+                \State vu[i] \gets true
+                \For{$j \in Adj[i]$}
+                    \If{$vu[j] = false$}
+                        \State \textcolor{blue}{parent[j] \gets i}
+                        \State visite(j)
+                    \EndIf
+                \EndFor
+                \EndFunction
+            \end{algorithmic}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \begin{algorithmic}[1]
+                \State vu \gets [$false$,...,$false$]
+                \State \textcolor{blue}{parent \gets [$-1$,...,$-1$]}
+                \For{$i \in S$}
+                    \If{$vu[i] = false$}
+                    \State visite(i)
+                    \EndIf
+                \EndFor
+                \end{algorithmic}            
+        \end{column}
+    \end{columns}    
 \end{frame}
+
 
 % ajouter un exemple sur les forets de parcours 
 % cours David : 
@@ -273,3 +283,108 @@
 \end{tikzpicture}
 \end{center}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Algorithme : principe}
+
+\begin{itemize}
+    \item Pendant un parcours en profondeur, on associe une couleur (0 ou 1) à chaque sommet en s'assurant que deux sommets adjacents n'ont pas la même couleur 
+    \item Si l'algorithme termine sans erreur, on a examiné chaque arête et attribué des couleurs cohérentes à chaque sommet : le graphe est biparti 
+    \item Sinon, le coloriage est impossible et l'algorithme s'arrête avant la fin 
+\end{itemize}
+\end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Algorithme}
+            \begin{columns}
+                \begin{column}{.55\textwidth}
+                    \begin{algorithmic}
+                    \Function{visite}{$i$ : sommet,$c$ : int}
+                    \State vu[i] \gets true
+                    \State couleur[i] \gets $c$
+                    \For{$j \in Adj[i]$}
+                        \If{$vu[j] = false$}
+                            \State visite(j,1-$c$)
+                        \ElsIf{couleur[j] = $c$} 
+                                \State STOP("pas biparti")
+                        \EndIf
+                    \EndFor
+                    \EndFunction
+                                    \end{algorithmic}
+                \end{column}
+                \begin{column}{.45\textwidth}
+                    \begin{algorithmic}
+                        \State vu \gets [$false$,...,$false$]
+                        \State couleur \gets $[-1,...,-1]$
+                        \For{$i \in S$}
+                            \If{$vu[i] = false$}
+                                \State visite(i)
+                            \EndIf
+                        \EndFor
+                    \end{algorithmic}            
+                \end{column}
+            \end{columns}    
+        \end{frame}
+        
+\begin{frame}{k-coloration}
+\begin{definition}
+    Un graphe non-orienté est \emph{$k$-coloriable} si on peut colorier chaque sommet avec une couleur comprise entre $1$ et $k$, de telle façon que deux sommets adjacents aient des couleurs distinctes
+\end{definition}
+\begin{itemize}
+    \item Remarques 
+    \begin{itemize}
+        \item Un graphe biparti est un graphe $2$-coloriable 
+        \item L'algorithme de $2$-coloration vu précédemment est linéaire, ce n'est pas généralisable malheureusement
+        \item De fait, pour $k>2$, le problème de déterminer si un graphe est $k$-coloriable est NP-complet  
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% parcours en profondeur (version non récursive) 
+
+\begin{frame}{Dérécursification}
+
+\begin{itemize}
+    \item Tout programme récursif peut être transformé en un programme équivalent non récursif, en s'aidant d'une \emph{pile} 
+    \begin{itemize}
+        \item cela peut avoir un intérêt pour l'efficacité (peu probable)
+        \item certains compilateurs savent le faire automatiquement (HS ici) 
+        \item dans certains cas, c'est plus facile à comprendre 
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Algorithme de parcours en profondeur itératif}
+        \begin{columns}
+            \begin{column}{.55\textwidth}
+                \begin{algorithmic}
+                    \Function{visite}{$i$ : sommet}
+                    \State P \gets empty() 
+                    \State vi[i] \ gets true 
+                    \State push(P,i) 
+                    \While{!empty(P)}
+                        \State k \gets pop(P)
+                        \For{$j \in Adj[k]$}
+                            \If{!vu[j]} 
+                            \State vu[k] \gets true 
+                            \State push(P,j
+                            \EndIf
+                        \EndFor
+                    \EndWhile
+                    \EndFunction
+                \end{algorithmic}
+            \end{column}
+            \begin{column}{.45\textwidth}
+                \begin{algorithmic}
+                    \State vu \gets [$false$,...,$false$]
+                    \For{$i \in S$}
+                        \If{$vu[i] = false$}
+                            \State visite(i)
+                        \EndIf
+                    \EndFor
+                \end{algorithmic}            
+            \end{column}
+        \end{columns}    
+    \end{frame}
+
