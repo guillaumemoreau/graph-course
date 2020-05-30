@@ -90,7 +90,7 @@
 
 \directlua{\detokenize{
     for i=0,6,1 do
-        tex.sprint("\\begin{frame}{Exemple} \\input{genfig/pp-", i, ".tex} \\end{frame}")
+        tex.sprint("\\begin{frame}{Exemple}\\begin{center} \\input{genfig/pp-", i, ".tex} \\end{center}\\end{frame}")
     end
 }}
 
