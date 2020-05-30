@@ -1,0 +1,21 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphdrawing.force}
+\usetikzlibrary{arrows}
+\usepackage{tikz-network}
+
+\title{Exemple de parcours en profondeur}
+\author{Guillaume Moreau}
+
+\begin{document}
+    \maketitle
+
+
+        \directlua{\detokenize{
+            for i=1,24,1 do
+                tex.sprint("\\begin{frame}\\begin{center} \\input{genfig/pl-", i, ".tex} \\end{center} \\end{frame}")
+            end
+        }}
+\end{document}
