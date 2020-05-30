@@ -87,41 +87,12 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-0}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-1}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-2}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-3}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-4}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-5}
-    \end{center}
-\end{frame}
-\begin{frame}{Exemple}
-    \begin{center}
-        \input{genfig/pp-6}
-    \end{center}
-\end{frame}
+
+\directlua{\detokenize{
+    for i=0,6,1 do
+        tex.sprint("\\begin{frame}{Exemple} \\input{genfig/pp-", i, ".tex} \\end{frame}")
+    end
+}}
 
 \begin{frame}{Efficacité de l'algorithme}
     \begin{itemize}
