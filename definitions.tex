@@ -320,3 +320,77 @@
 \end{frame}
 
 
+\begin{frame}{Fermeture transitive}
+    \begin{definition}
+        Dans un graphe, orienté ou non, un sommet $y$ est dit \emph{accessible} depuis un sommmet $x$ si et seulement si
+        il existe un chemin de $x$ à $y$
+    \end{definition}
+
+    \begin{block}{Propriété}
+        On peut décider si $y$ est accessible depuis $x$ grâce à un parcours en profondeur depuis $x$ en temps linéaire
+    \end{block}
+
+    \begin{definition}
+        La \emph{fermeture transitive} d'un graphe $G=(S,A)$ est un graphe $G^*=(S,A^*)$ avec les mêmes sommets mais tel qu'il existe un arc $(x,y) \in A^*$ si et seulement si il existe un chemin de $x$ à $y$ dans $G$
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Propriétés}
+\begin{block}{Propriété}
+    La fermeture transitive d'un graphe non orienté connexe (respectivement orienté fortement connexe) est le graphe complet
+\end{block}
+
+\begin{block}{Propriété}
+    Si on connait $G^*$, la requête d'accessibilité se fait en temps constant
+\end{block}
+\end{frame}
+
+% TODO remplacer les Adj[i] par $\Gamma(i)$ dans les algos 
+
+\begin{frame}{Calcul de la fermeture transitive dans un graphe \emph{creux}}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \begin{algorithmic}
+        \Function{visite}{l,i}
+        \State $A^*[l,i]$ \gets True 
+        \For{$j \in \Gamma(i)$} 
+        \If{non $A^*[l,j]$}  
+            \State visite(l,j)
+        \EndIf
+        \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{algorithmic}
+        \Function{fermeture transitive}{}
+            \State $A^*$ = [[False,False],...[False,False]]
+            \For{$i \in S$} 
+                \State visite(i,i)
+            \EndFor \\
+        \Return $A^*$
+        \EndFunction
+    \end{algorithmic}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Exemple}
+\begin{center}
+    \input{genfig/ft0}
+\end{center}
+\end{frame}
+
+\begin{frame}{Exemple : fermeture réflexo-transitive}
+\begin{center}
+    \input{genfig/ft1}
+\end{center}
+    \end{frame}
+
+\begin{frame}{Calcul de la fermeture transitive}
+\begin{itemize}
+    \item La calcul se fait en ${\cal O}(nm)$ avec $n$ parcours en profondeur
+    \item En pratique, $A*$ est plutôt dense... On peut faire le calcul de façon matricielle
+    \item cf. algorithme de Floyd-Warshall en TD 
+\end{itemize}
+\end{frame}
