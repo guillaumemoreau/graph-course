@@ -205,15 +205,20 @@
         \includegraphics<3>[width=.49\textwidth]{fig/pasconnexe2.pdf}
     \end{center}
     \visible<3>{Un graphe peut toujours être décomposé en une union disjointe de sous-graphes connexes : ses \emph{composantes connexes}.}
-    \begin{definition}
-        
-    \end{definition}
 \end{frame}
 
 \begin{frame}{Vocabulaire}
     \begin{definition}
-        Un graphe $G=(S,A)$ \textbf{orienté} est \emph{fortement connexe} si et seulement si toute paire de sommets est reliée par au moins un chemin
+        Un graphe $G=(S,A)$ \textbf{orienté} est \emph{fortement connexe} si et seulement si toute paire de sommets est reliée par au moins un chemin, c'est-à-dire si $\forall x,y \in S$ il existe un chemin de $x$ à $y$ \textbf{et} un chemin de $y$ à $x$
     \end{definition}
+    \begin{block}{Propriété}
+        La connectivité forte est une relation d'équivalence :
+
+        \begin{itemize}
+            \item elle est réflexive, symétrique et transitive 
+            \item ses classes d'équivalences sont les composantes fortement connexes du graphe 
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \begin{frame}{Arbres}
