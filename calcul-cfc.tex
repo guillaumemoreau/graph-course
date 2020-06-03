@@ -1,0 +1,62 @@
+% calcul des composantes fortement connexes 
+
+\begin{frame}{Calcul des composantes fortements connexes : un peu d'histoire}
+
+\begin{itemize}
+    \item Années 60 : un problème classique 
+    \begin{itemize}
+        \item mais sans solution efficace (polynomiale)
+        \item la complexité du problème n'est pas connue 
+    \end{itemize}
+    \item 1972 : algorithme linéaire proposé par Trojan 
+    \begin{itemize}
+        \item simple modification du parcours en profondeur 
+        \item difficile à comprendre 
+    \end{itemize}
+    \item années 80 : algorithme linéaire de Kosajaru 
+    \begin{itemize}
+        \item plus simple à comprendre (2 parcours)
+        \item la légende dit qu'il avait oublié ses notes de cours et qu'il a inventé l'algorithme en préparant son cours 
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Notion de graphe inverse}
+\begin{definition}
+    Le graphe \emph{inverse} d'un graphe $G=(S,A)$ est le graphe $G'=(S,A')$ possédant les mêmes sommets mais possédant un arc $(i,j) \in A'$ si et seulement si $(j,i) \in A$    
+\end{definition}
+
+\begin{example}
+    \begin{tikzpicture}
+        \node[lettre] (1) at (0,0)  {1};
+        \node[lettre] (2) at (0,-1) {2};
+        \node[lettre] (3) at (1,-1) {3};
+        \node[lettre] (4) at (1,0) {4};
+        \node[lettre] (5) at (2,0) {5};
+        \node[lettre] (6) at (2,-1) {6}; 
+        \draw[edge] (1) -> (4);
+        \draw[edge] (1) -> (2) -> (4);
+        \draw[edge] (2) -> (3);
+        \draw[edge] (6) -> (5);
+        \draw[edge] (4.260) -> (3.100);
+        \draw[edge] (3.800) -> (4.280);
+        \node (l) at (4,0) {et son graphe inverse};
+    \end{tikzpicture}        
+    \begin{tikzpicture}
+        \node[lettre] (1) at (0,0)  {1};
+        \node[lettre] (2) at (0,-1) {2};
+        \node[lettre] (3) at (1,-1) {3};
+        \node[lettre] (4) at (1,0) {4};
+        \node[lettre] (5) at (2,0) {5};
+        \node[lettre] (6) at (2,-1) {6}; 
+        \draw[edge] (4) -> (1);
+        \draw[edge] (4) -> (2) -> (1);
+        \draw[edge] (3) -> (2);
+        \draw[edge] (5) -> (6);
+        \draw[edge] (4.260) -> (3.100);
+        \draw[edge] (3.800) -> (4.280);
+    \end{tikzpicture}        
+\end{example}
+
+
+\end{frame}
