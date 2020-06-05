@@ -40,7 +40,7 @@
         \draw[edge] (6) -> (5);
         \draw[edge] (4.260) -> (3.100);
         \draw[edge] (3.800) -> (4.280);
-        \node (l) at (4,0) {et son graphe inverse};
+        \node (l) at (4.5,0) { et son graphe inverse};
     \end{tikzpicture}        
     \begin{tikzpicture}
         \node[lettre] (1) at (0,0)  {1};
@@ -58,5 +58,26 @@
     \end{tikzpicture}        
 \end{example}
 
+\begin{block}{Propriété}
+    Les composantes fortement connexes d'un graphe sont identiques à celles de son graphe inverse
+\end{block}
 
+\end{frame}
+
+\begin{frame}{Algorithme de Kosaraju : principe}
+
+\begin{enumerate}
+    \item Parcours en profondeur de $G$ pour retenir un ordre suffixe
+    \begin{itemize}
+        \item i.e. quand on visite $b$ depuis $a$, on note $b$, $a$
+    \end{itemize}
+    \item Calcul de $G'$ l'inverse de $G$
+    \item Parcours en profondeur sur $G'$ mais avec modification de la boucle principale : on prend la boucle principale par l'inverse de l'ordre suffixe établi à la première étape
+    \item Les composantes fortement connexes sont les arbres de la forêt du second parcours
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Exemple}
+    \input{snippets/kosaraju-1.tex}
 \end{frame}

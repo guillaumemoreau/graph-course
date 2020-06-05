@@ -2,9 +2,9 @@ import igraph as ig
 from network2tikz import plot
 
 # construction du graphe exemple tiré du cours de DP
-def build_graph_exemple_24():
+def build_graph_exemple_24(oriente = False):
     g1 = ig.Graph(24, [(0, 6), (6, 12), (12, 18), (7, 13), (13, 19), (2, 8), (8, 14), (3, 9), (15, 21), (4, 10), (10, 16), (5, 11), (11, 17),
-                   (6, 7), (7, 8), (8, 9), (9, 10), (12, 13), (13, 14), (16, 17), (18, 19), (20, 21), (22, 23)], False)
+                   (6, 7), (7, 8), (8, 9), (9, 10), (12, 13), (13, 14), (16, 17), (18, 19), (20, 21), (22, 23)], oriente)
     visual_style = {}
     visual_style['edge_width'] = 2
     visual_style['node_size'] = .8
@@ -18,6 +18,19 @@ def build_graph_exemple_24():
             layout[y*6+x] = (x, -y)
     visual_style['layout'] = layout
 
+    # numérotation des sommets
+    # counter = 1
+    # g1.vs["name"] = ["1"]
+    # first = True
+    # for s in g1.vs:
+    #     if first:
+    #         first = False
+    #     else:
+    #         g1.vs["name"].append(str(counter))
+    #         print(counter)
+    #     counter = counter + 1
+
+    # print(g1.vs["name"])
     return g1,visual_style
 
 def build_graph_exemple_6():
