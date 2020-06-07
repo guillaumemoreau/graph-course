@@ -1,0 +1,66 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphdrawing.force}
+\usetikzlibrary{arrows}
+\usepackage{tikz-network}
+
+\title{Algorithme de Kosaraju}
+\author{Guillaume Moreau}
+
+\begin{document}
+    \maketitle
+
+
+    
+    \directlua{\detokenize{
+        for i=0,24,1 do
+            tex.sprint("\\begin{frame}\\begin{center} \\input{genfig/kosaraju-", i, ".tex} \\end{center} \\end{frame}")
+        end
+    }}
+
+    \begin{frame}{Graphe d'origine}
+
+        \begin{center}
+            \input{genfig/kosaraju-0.tex}      
+        \end{center}
+    
+    
+    \end{frame}
+    
+
+\begin{frame}{Ordre suffixe}
+
+    \begin{center}
+        \input{genfig/kosaraju-p1.tex}      
+    \end{center}
+    ordre suffixe : ['3', '18', '17', '11', '10', '15', '9', '14', '8', '20', '19', '13', '7', '1', '2', '4', '5', '12', '6', '22', '16', '21', '24', '23']
+
+
+\end{frame}
+
+\begin{frame}{Graphe inverse}
+
+    \begin{center}
+        \input{genfig/kosaraju-inverse.tex}      
+    \end{center}
+
+
+\end{frame}
+
+\directlua{\detokenize{
+    for i=25,48,1 do
+        tex.sprint("\\begin{frame}\\begin{center} \\input{genfig/kosaraju-", i, ".tex} \\end{center} \\end{frame}")
+    end
+}}
+
+\begin{frame}{Composantes fortement connexes}
+
+    \begin{center}
+        \input{genfig/kosaraju-cfc.tex}      
+    \end{center}
+
+
+\end{frame}
+\end{document}
