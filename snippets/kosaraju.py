@@ -39,13 +39,13 @@ def visite(g,i):
     ordre_suffixe.append(i["nom"])
 
 
-def DFSUtil(ginv, v, ncb):
+def visite_k(ginv, v, ncb):
     v["vu"] = True
     v["comp"] = ncb
     export_graphe(ginv)
     for i in v.successors():
         if i["vu"] == False:
-            DFSUtil(ginv, i, ncb)
+            visite_k(ginv, i, ncb)
 
 # initialisation
 counter = 1
@@ -89,9 +89,8 @@ while ordre_suffixe:
     e = ginv.vs.select(nom = i)[0]
     if (e["vu"] == False):
         e["comp"] = ncb
-        DFSUtil(ginv,e,ncb)
+        visite_k(ginv,e,ncb)
         ncb = ncb+1
-        print("/") 
 
 
 visual_style['node_label'] = ginv.vs["comp"]
