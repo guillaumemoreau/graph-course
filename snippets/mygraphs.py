@@ -1,5 +1,6 @@
 import igraph as ig
 from network2tikz import plot
+import random 
 
 # petit graphe à 8 sommets pour les CFC 
 def build_graph_exemple_8(oriente = True):
@@ -114,3 +115,24 @@ def build_graph_exemple_6():
     }
     visual_style['layout'] = layout
     return g1,visual_style
+
+# graphe pour les exemples d'arbres couvrants minimaux
+def gen_graphe_connexe(taille):
+    conn = False
+    while conn == False:
+        g = ig.Graph.GRG(taille, .45)
+        conn = g.is_connected()
+    visual_style = {}
+    visual_style['node_size'] = .2
+    visual_style['node_opacity'] = 0.5
+    visual_style['layout'] = 'kk'
+    ponderation = []
+    for e in g.es:
+        a = random.randrange(10)
+        e["pds"] = a
+        ponderation.append(a)
+    visual_style['edge_label'] = g.es["pds"]
+    # on colorie tout en noir
+    for e in g.es:
+        e["acm"] = False
+    return g, visual_style
