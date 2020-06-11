@@ -1,0 +1,22 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphdrawing.force}
+\usetikzlibrary{arrows}
+\usepackage{tikz-network}
+
+\title{Calcul d'arbre couvrant minimal : algorithme glouton}
+\author{Guillaume Moreau}
+
+\begin{document}
+    \maketitle
+
+
+    \directlua{\detokenize{
+        for i=0,14,1 do
+            tex.sprint("\\begin{frame}\\begin{center} \\includegraphics[height=.9\\textheight]{genfig/mstprim-", i, ".pdf} \\end{center} \\end{frame}")
+        end
+    }}
+
+\end{document}
