@@ -177,13 +177,12 @@
     \end{itemize}
 \end{frame}
 
-% TODO algorithme glouton 
 
 \begin{frame}{Schéma d'un algorithme glouton}
     \begin{itemize}
         \item On colorie toutes les arêtes de $G$ en noir. On va progressivement colorier en rouge les arêtes de l'arbre couvrant minimal 
         \item On choisit une coupe avec aucune arête traversante rouge 
-        \item On sélectionnne l'arête traversante de poids minimum et on la colorie en rouge 
+        \item On sélectionne l'arête traversante de poids minimum et on la colorie en rouge 
         \item On répète jusqu'à avoir obtenu l'ACM. Combien d'arêtes faut-il ? 
         \begin{itemize}
             \item l'arbre couvrant minimal comporte $n-1$ arêtes 

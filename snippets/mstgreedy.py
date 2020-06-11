@@ -5,7 +5,7 @@ from network2tikz import plot
 import random
 import mygraphs
 
-taille = 5
+taille = 15
 
 
 nb_colored = 0 
