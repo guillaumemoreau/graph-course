@@ -1,0 +1,77 @@
+% algorithmes de plus courts chemins 
+
+\begin{frame}{Graphes pondérés}
+
+\begin{definition}
+    Un graphe \emph{non-orienté pondéré} est un graphe non-orienté muni d'une fonction de pondération qui associe une valeur réelle à chaque arête. 
+\end{definition}
+
+\begin{definition}
+    Un graphe \emph{orienté pondéré} est un graphe orienté muni d'une fonction de pondération qui associe une valeur réelle à chaque arc. 
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Exemple : graphe non-orienté pondéré}
+    \begin{center}
+        \input{fig/graphe-pondere.tex}
+    \end{center}
+    \end{frame}
+
+% TODO exemple de graphe orienté avec pondération ?
+
+\begin{frame}{Applications}
+    \begin{itemize}
+        \item Calcul de plus courts chemins 
+        \begin{itemize}
+            \item Distances entre villes
+        \end{itemize}
+        \item Arbres couvrants minimaux 
+        \item Contraintes entre tâches 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Arbre couvrant}
+    \begin{definition}
+        Dans un graphe $G$ non orienté (pondéré ou non) connexe, un arbre couvrant est un sous-graphe connexe acyclique (arbre) incluant tous les sommets de $G$
+    \end{definition}
+
+
+\end{frame}
+
+% TODO ajouter définition d'un sous-graphe 
+
+
+\begin{frame}{Exemple : arbre couvrant}
+    \begin{center}
+        \input{fig/arbre-couvrant.tex}
+    \end{center}
+    \end{frame}
+
+    \begin{frame}{Contre-exemple : arbre non couvrant}
+        \begin{center}
+            \input{fig/arbre-pas-couvrant.tex}
+        \end{center}
+        \end{frame}
+    
+\begin{frame}{Construction d'un arbre couvrant}
+\begin{itemize}
+    \item Connaissez-vous un algorithme capable de construire un arbre couvrant ?
+    \pause \item Oui !
+    \pause \item Tous les algorithmes de parcours que nous avons vus jusqu'ici 
+    \pause \item Pour de bonnes raisons applicatives, on va chercher à construire un arbre couvrant \emph{minimal} 
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Arbre couvrant minimal}
+    \begin{definition}
+        Dans un graphe non orienté pondéré et connexe, un arbre couvrant minimal est un arbre couvrant dont la somme des arêtes est minimale
+    \end{definition}
+\end{frame}
+
+
+% TODO algorithme glouton 
+
+% TODO algorithme de Prim 
+
