@@ -206,5 +206,166 @@
     end
 }}
 
-% TODO algorithme de Prim 
+\begin{frame}{Les algoroithmes gloutons}
+    \begin{itemize}
+        \item Approche algorithmique générale pour résoudre des problèmes d'optimisation 
+        \item Construction progressive d'une solution 
+        \item A chaque étape on fait un choix local optimal, sans se préoccuper de l'effet global
+        \item L'approche gloutonne ne fonctionne pas toujours... mais reste simple 
+    \end{itemize}
+\end{frame}
 
+
+
+\begin{frame}{Algorithme de Prim}
+    \begin{itemize}
+        \item On colorie toutes les arêtes de $G$ en noir. Puis on va progressivement colorier en rouge les arêtes de l'arbre couvrant minimal. A chaque étape le sous-graphe rouge est un arbre. On colorie en rouge les sommets reliés par des arêtes rouges
+        \item On choisit un sommet de départ
+        \item On considère la coupe distinguant  les sommets rouges des autres. On choisit une arête traversante minimale pour cette coupe et on le colorie en rouge. On colorie également en rouge le sommet qui ne l'était pas encore.
+        \item On répète jusqu'à avoir colorié en rouge tous les sommets 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Correction}
+\begin{itemize}
+    \item A chaque étape, le sous-graphe rouge (sommets et arêtes) est connexe 
+    \begin{itemize}
+        \item C'est vrai au départ (choix du sommet de départ)
+        \item C'est encore vrai après avoir ajouté une arête et un sommet 
+    \end{itemize}
+    \item A chaque étape, l'arête choisie vérifie les hypothèses de l'algorithme glouton générique 
+    \begin{itemize}
+        \item C'est l'arête minimum pour la coupe (rouge / pas rouge) courante 
+    \end{itemize}
+    \item Chaque étape ajoute donc une arête appartenant à l'arbre couvrant minimal 
+\end{itemize}
+\end{frame}
+\directlua{\detokenize{
+    for i=0,5,1 do
+        tex.sprint("\\begin{frame}{Exemple}\\begin{center} \\includegraphics[height=.8\\textheight]{fig/mstprim-", i, ".pdf} \\end{center} \\end{frame}")
+    end
+}}
+
+% TODO ajouter l'algorithme de Kruskal (avec Union-Find) ?
+
+\begin{frame}{Longueur d'un chemin}
+    \begin{definition}
+        Dans un graphe $G=(S,A)$ pondéré (muni d'une fonction $c:A \longrightarrow \mathbf{Z})$, la \emph{longueur} d'un chemin est la somme des poids des arcs le composant 
+    \end{definition}
+    \begin{definition}
+       La \emph{distance minimum} $\delta(i,j)$ entre deux sommets $i$ et $j$ est alors le minimum des longueurs des chemins entre $i$ et $j$ 
+    \end{definition}
+\begin{definition}
+    On appelle \emph{circuit absorbant} un circuit dont la longueur est négative.
+\end{definition}
+Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorbant.
+
+\end{frame}
+
+\begin{frame}{Algorithmes de plus courts chemins}
+    \begin{itemize}
+        \item Plusieurs questions
+        \begin{itemize}
+            \item Quel est le plus court chemin de $i$ à $j$?
+            \item Quels sont tous les plus courts chemins issus de $i$ ?
+            \item Quels sont les plus courts chemins entre tous les sommets du graphe (distancier) ?
+        \end{itemize}
+        \item Des hypothèses restrictives pour simplifier certains algorithmes
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Calcul des plus courts chemins à partir d'une origine}
+    \begin{itemize}
+        \item Les plus courts chemins issus d'un sommet $s$ forment un \textbf{arbre}
+        \begin{itemize}
+            \item on suppose que le graphe ne possède pas de circuit absorbant
+            \item on suppose également que le graphe est connexe 
+        \end{itemize}  
+        \item On souhaite alors calculer deux tableaux 
+        \begin{itemize}
+            \item \texttt{dist[i]} : la distance minimale de $s$ à $i$
+            \item \texttt{pred[i]} : le prédécesseur de $i$ dans un chemin minimal de $s$ à $i$
+            \begin{itemize}
+                \item cela suppose que systématiquement $i$ est un successeur de \texttt{pred[i]}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Calcul des plus courts chemins à partir d'une origine}
+    \begin{theorem}
+        Si $j$ est un prédécesseur de $i$ dans un chemin minimal de $s$ à $i$, alors $\delta(s,i) = \delta(s,j)+c(j,i)$
+    \end{theorem}
+        \begin{proof}
+            \begin{itemize}
+            \item On considère un tel chemin de $s$ à $i$ passant par $j$ puis comprenant l'arc $(j,i)$. Il est de longueur $\delta(s,i)$
+            \item Le chemin extrait de $s$ à $j$ est minimal sinon on pourrait construire un chemin de $s$ à $i$ strictement plus court que $\delta(s,i)$
+            \item Le chemin considéré de $s$ à $i$ a donc pour longueur $\delta(s,j)+c(j,i)$
+            \item Donc, on a bien $\delta(s,i) = \delta(s,j)+c(j,i)$
+        \end{itemize}
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}{Calcul des plus courts chemins à partir d'une origine}
+    \begin{theorem}
+        le graphe formé par la relation \texttt{pred} est un \arbre
+    \end{theorem}
+        \begin{proof}
+            \begin{itemize}
+                \item S'il existait un cycle passant par un sommet $i$, cela signifierait qu'il existe un plus court chemin de $s$ à $i$, passant par $i$ et par $s$ lui-même. $s$ ne pouvant pas avoir de prédécesseur, le graphe est donc acyclique 
+            \item Pour l'instant, nous savons que le graphe est une \foret. Si un arbre de cette forêt n'avait pas $s$ pour racine, cela signifierait qu'il n'y a pas de chemin minimal de $s$ à cette racine dans le graphe de départ. C'est en contradiction avec l'hypothèse, donc le graphe est connexe
+            \item Le graphe étant connexe et acyclique, c'est un arbre 
+        \end{itemize}
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Algorithme ordinal}
+    \begin{itemize}
+        \item On se restreint à un \textbf{graphe acylique}
+        \item On parcourt le graphe selon un ordre topologique
+        \item A chaque étape, on examine le sommet $i$, sous condition qu'on ait calculé \texttt{dist[j]} pour tous les prédécesseurs $j$ de $i$ dans le graphe 
+        \item On calcule alors 
+
+        $$
+        \mathtt{dist}[i] = \min \{  \mathtt{dist}[j] + c(j,i), j \in \Gamma^{-}(j)\}
+        $$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Algorithme ordinal : version en arrière}
+    \begin{algorithmic}[1]
+        \Function{ordinal}{$G$}{$s$}
+        \State ord \gets tri\_topologique($G$)
+        \State dist \gets [$\infty,...,\infty$] 
+        \For{k $\in [0,...n-1]$}
+            \State i \gets ord[k]
+            \If{i=s}
+                dist[i] \gets 0
+            \Else
+                \For{j $\in \Gamma^{-1}(j)$}
+                    \If{dist[j]+c(j,i) < dist[i]}
+                        \State dist[i] \gets  dist[j]+c(j,i)
+                        \State pred[i] \gets j
+                    \EndIf
+                \EndFor 
+            \EndIf  
+        \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{frame}
+
+\begin{frame}{Tri topologique}
+    \begin{definition}
+        Un \emph{tri topologique} est un ordre total sur l'ensemble des sommets dans lequel $s$ précède $t$ pour tout arc d'un sommet $s$ vers un sommet $t$
+    \end{definition}
+    \begin{itemize}
+        \item Plusieurs algorithmes pour obtenir un tri topologique
+        \begin{itemize}
+            \item parcours en profondeur pendant lequel on empile chaque sommet une fois tous ses successeurs visités. En désempilant, on obtient un tri topologique
+            \item On peut aussi chercher une racine (sommet sans prédécesseur), l'enlever et répéter l'opération autant de fois que nécessaire
+        \end{itemize}
+        \item Remarque : il n'existe pas d'ordre topologique unique pour un graphe 
+    \end{itemize}
+\end{frame}
