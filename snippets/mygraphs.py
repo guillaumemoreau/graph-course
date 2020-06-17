@@ -2,7 +2,30 @@ import igraph as ig
 from network2tikz import plot
 import random 
 
-# petit graphe à 8 sommets pour les CFC 
+# graphe acyclique pour les PCC 
+def build_exemple_pcc():
+    g = ig.Graph(8,[],True)
+    g.vs["name"] = ["s","2","7","6","5","3","4","t"]
+    g.add_edge(0,1)["w"] = 9
+    g.add_edge(0,3)["w"] = 14
+    g.add_edge(0,2)["w"] = 15
+    g.add_edge(1,5)["w"] = 24
+    g.add_edge(3,5)["w"] = 18
+    g.add_edge(3,2)["w"] = 5
+    g.add_edge(3,4)["w"] = 30
+    g.add_edge(3,5)["w"] = 18
+    g.add_edge(5,4)["w"] = 2
+    g.add_edge(5,7)["w"] = 19
+    g.add_edge(4,6)["w"] = 11
+    g.add_edge(4,7)["w"] = 16
+    g.add_edge(6,7)["w"] = 6
+    g.add_edge(2,7)["w"] = 44 
+    g.add_edge(2,4)["w"] = 20
+
+    # (0,1),(0,6),(0,7),(1,5),(3,5),(3,4),(3,2),(2,4),(5,4),(4,6),(4,7),(2,7),(6,7),(5,7)]
+    return g
+
+# petit graphe a 8 sommets pour les CFC 
 def build_graph_exemple_8(oriente = True):
     g1 = ig.Graph(8,[(0,2),(1,2),(2,3),(3,2),(4,1),(1,4),(1,5),(5,6),(6,5),(2,6),(6,7),(3,7)],oriente)
     visual_style = {}
@@ -20,7 +43,7 @@ def build_graph_exemple_8(oriente = True):
 
     return g1,visual_style
 
-# construction du graphe exemple tiré du cours de DP
+# construction du graphe exemple tire du cours de DP
 def build_graph_exemple_24(oriente = False):
     g1 = ig.Graph(24, [(0, 6), (6, 12), (12, 18), (7, 13), (13, 19), (2, 8), (8, 14), (3, 9), (15, 21), (4, 10), (10, 16), (5, 11), (11, 17),
                    (6, 7), (7, 8), (8, 9), (9, 10), (12, 13), (13, 14), (16, 17), (18, 19), (20, 21), (22, 23)], oriente)
@@ -37,7 +60,7 @@ def build_graph_exemple_24(oriente = False):
             layout[y*6+x] = (x, -y)
     visual_style['layout'] = layout
 
-    # numérotation des sommets
+    # numerotation des sommets
     # counter = 1
     # g1.vs["name"] = ["1"]
     # first = True
@@ -53,7 +76,7 @@ def build_graph_exemple_24(oriente = False):
     return g1,visual_style
 
 
-# construction du graphe exemple tiré du cours de DP
+# construction du graphe exemple tire du cours de DP
 def build_graph_exemple_24dense(oriente=False):
     g1 = ig.Graph(24, [(0, 6), (6, 12), (12, 18), (7, 13), (19, 13), (2, 8), (14, 8), (3, 9), (15, 21), (4, 10), (10, 16), (5, 11), (11, 17),
                        (6, 7), (8, 7), (8, 9), (9, 10), (12, 13), (13, 14), (16, 17), (18, 19), (20, 21), (22, 23),
@@ -71,7 +94,7 @@ def build_graph_exemple_24dense(oriente=False):
             layout[y*6+x] = (x, -y)
     visual_style['layout'] = layout
 
-    # numérotation des sommets
+    # numerotation des sommets
     # counter = 1
     # g1.vs["name"] = ["1"]
     # first = True
