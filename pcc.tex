@@ -370,115 +370,38 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Exemple}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}
+\input{exemple-ordinal}
 
-        Ordre topologique : $s,6,7,2,3,5,4,t$
-    \end{center}
+
+\begin{frame}{Algorithme de Dijkstra}
+    \begin{itemize}
+        \item On autorise que le graphe contienne des cycles
+        \item On se restreint à un \textbf{graphe sans poids négatifs}
+        \item Idée : on construit progressivement un ensemble $S$ qui contient les sommets dont nous aurons déjà calculé la distance minimale 
+        \item En choisissant à chaque itération un nouveau sommet dont le coût d'accès est minimal qu'on ajoute dans $S$, cette propriété est conservée et on va mettre à jour \texttt{pred} et \texttt{dist} pour les autres sommets
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{Itérations de l'algorithme : traitement de $s$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &       &       &       &       &       &       &       \\
-        \texttt{dist} & 0       &inf    &inf    &inf    &inf    &inf    &inf    &inf    \\
-    \end{tabular}
-\end{center}
+\begin{frame}[fragile]
+    \frametitle{Algorithme}
+    \begin{algorithmic}[1]
+        \Function{Dijkstra}{$G,s$}
+            \State dist \gets [0,$\infty$,...,$\infty$]
+            \State $P$ \gets $S$, $T$ \gets $\{\}$
+            \While{$T$ non vide}
+                \State Choisir $x_0 \in T$ tel que \texttt{dist} minimal
+                \State $T$ \gets $T-\{ x_0 \}$, $P$ \gets $P \cup \{ x_0 \}$  
+                \For{$j \in \Gamma^+(i)$}
+                    \If{dist[i]+c(i,j) < dist[j]}
+                        \State dist[j] \gets dist[i]+c(i,j)
+                        \State pred[j] \gets i
+                    \EndIf 
+                \EndFor
+            \EndWhile
+        \EndFunction
+    \end{algorithmic}
 \end{frame}
 
-\begin{frame}{Itérations de l'algorithme : traitement de $6$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &       &       &s      &       &       &       &       \\
-        \texttt{dist} & 0       &inf    &inf    &14     &inf    &inf    &inf    &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
 
-\begin{frame}{Itérations de l'algorithme : traitement de $7$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &       &s      &s      &       &       &       &       \\
-        \texttt{dist} & 0       &inf    &15     &14     &inf    &inf    &inf    &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Itérations de l'algorithme : traitement de $2$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &s      &s      &s      &       &       &       &       \\
-        \texttt{dist} & 0       &9      &15     &14     &inf    &inf    &inf    &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Itérations de l'algorithme : traitement de $3$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &s      &s      &s      &       &6      &       &       \\
-        \texttt{dist} & 0       &9      &15     &14     &inf    &32     &inf    &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Itérations de l'algorithme : traitement de $5$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &s      &s      &s      &3      &6      &       &       \\
-        \texttt{dist} & 0       &9      &15     &14     &34     &32     &inf    &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Itérations de l'algorithme : traitement de $4$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &s      &s      &s      &3      &6      &5      &       \\
-        \texttt{dist} & 0       &9      &15     &14     &34     &32     &45     &inf    \\
-    \end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Itérations de l'algorithme : traitement de $t$}
-    \begin{center}
-        \includegraphics[height=.6\textheight]{fig/ordinal-0.pdf}      
-    \begin{tabular}{c|cccccccc}
-        
-        sommet & s       &2      &7      &6      &5      &3      &4      &t      \\
-        \hline
-        \texttt{pred} & &s      &s      &s      &3      &6      &5      &5      \\
-        \texttt{dist} & 0       &9      &15     &14     &34     &32     &45     &50     \\
-    \end{tabular}
-\end{center}
-\end{frame}
+\input{exemple-dijkstra}
 
