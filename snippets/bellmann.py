@@ -13,15 +13,16 @@ def bellmann(G,s):
         i["pred1"] = ""
     s["dist"] = 0
     for itr in range(0,len(G.vs)-1):
+        print('Iteration '+str(itr))
         # recopie de dist et pred vers dist1 et pred1 
         for x in G.vs:
             x["dist1"] = x["dist"]
             x["pred1"] = x["pred"]
         for i in G.vs:
+            # on recopie les valeurs précédentes 
             mcout = i["dist1"]
-            msommet = x["pred1"]
+            msommet = i["pred1"]
             for j in i.predecessors():
-                    print('('+i["name"]+','+j["name"]+') : ')
                     if j["dist"]+G.es[G.get_eid(j,i)]["w"] < i["dist"]:
                         mcout = j["dist"]+G.es[G.get_eid(j,i)]["w"]
                         msommet = j
