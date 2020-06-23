@@ -218,6 +218,7 @@
 
 
 \begin{frame}{Algorithme de Prim}
+    \label{def:prim}
     \begin{itemize}
         \item On colorie toutes les arêtes de $G$ en noir. Puis on va progressivement colorier en rouge les arêtes de l'arbre couvrant minimal. A chaque étape le sous-graphe rouge est un arbre. On colorie en rouge les sommets reliés par des arêtes rouges
         \item On choisit un sommet de départ
@@ -379,6 +380,7 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
         \item On se restreint à un \textbf{graphe sans poids négatifs}
         \item Idée : on construit progressivement un ensemble $S$ qui contient les sommets dont nous aurons déjà calculé la distance minimale 
         \item En choisissant à chaque itération un nouveau sommet dont le coût d'accès est minimal qu'on ajoute dans $S$, cette propriété est conservée et on va mettre à jour \texttt{pred} et \texttt{dist} pour les autres sommets
+        \item Note : l'algorithme de Dijkstra ressemble fortement à l'algorithme de \prim
     \end{itemize}
 \end{frame}
 
@@ -404,4 +406,53 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
 
 
 \input{exemple-dijkstra}
+%TODO ajouter un exemple Dijkstra avec des cycles 
+
+
+\begin{frame}{Comparaison des algorithmes}
+    \begin{itemize}
+        \item Algorithme ordinal 
+        \begin{itemize}
+            \item pour les graphes acycliques 
+            \item Coût en ${\cal O}(n+m)$
+        \end{itemize}
+        \item Algorithme de Dijkstra 
+        \begin{itemize}
+            \item pour les graphes sans poids négatifs 
+            \item coût ${\cal O}(m \log n + n \log n)$
+            \item coût pour une implémentation inspirée de Prim avec une file de priorité sous forme de tas binaire (i.e. pas l'implémentation vue dans le cours)
+        \end{itemize}
+        \item Reste à voir un algorithme plus général : l'algorithme de Bellmann 
+    \end{itemize}
+\end{frame}
+
+% on passe à l'algorithme de Bellmann 
+
+\begin{frame}{Algorithme de Bellmann}
+    \begin{itemize}
+        \item Hypothèse : le graphe ne contient pas de circuit absorbant
+        \item Idée : Par rapport à l'algorithme de Dijkstra, on remet en cause tous les chemins à chaque itération 
+        \item Justification : variante de l'algorithme Floyd-Warshall sur la fermeture transitive (vu en TD)
+        \item Coût : typiquement en ${\cal O}(n^3)$ mais une version optimisée ramène sa complexité à ${\cal O}(nm)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Algorithme}
+    \begin{algorithmic}
+        \Function{Bellmann}{$G,s$}
+            \State dist \gets [0,$\infty$,...,$\infty$]
+            \For{$m \in \{1,...,n-2\}$} 
+                \For{$x \in S$} 
+                    \State dist[$x$] = $\min [ \mathsf{dist}(x) , \min_{y \neq x} [ \mathsf{dist}(y) + c(y,x)]]$ 
+                \EndFor
+            \EndFor 
+            \EndFunction        
+    \end{algorithmic}
+\end{frame}
+
+\input{exemple-bellmann}
+
+% TODO vérifier l'orthographe de Bellmann 
+
 

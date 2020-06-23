@@ -25,6 +25,24 @@ def build_exemple_pcc():
     # (0,1),(0,6),(0,7),(1,5),(3,5),(3,4),(3,2),(2,4),(5,4),(4,6),(4,7),(2,7),(6,7),(5,7)]
     return g
 
+# graphe avec cycle et poids négatifs pour l'algo de Bellmann 
+def build_exemple_bellmann():
+    g = ig.Graph(6,[],True)
+    g.vs["name"] = ["1","2","3","4","5","6"]
+    g.add_edge(0,1)["w"] = 3
+    g.add_edge(0,2)["w"] = 6
+    g.add_edge(0,4)["w"] = 3 
+    g.add_edge(1,2)["w"] = -3 
+    g.add_edge(1,3)["w"] = 6
+    g.add_edge(2,3)["w"] = 1
+    g.add_edge(4,2)["w"] = -2 
+    g.add_edge(3,4)["w"] = 9 
+    g.add_edge(3,5)["w"] = 1
+    g.add_edge(4,5)["w"] = 5
+
+
+    return g
+
 # petit graphe a 8 sommets pour les CFC 
 def build_graph_exemple_8(oriente = True):
     g1 = ig.Graph(8,[(0,2),(1,2),(2,3),(3,2),(4,1),(1,4),(1,5),(5,6),(6,5),(2,6),(6,7),(3,7)],oriente)
