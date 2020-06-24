@@ -422,13 +422,13 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
             \item coût ${\cal O}(m \log n + n \log n)$
             \item coût pour une implémentation inspirée de Prim avec une file de priorité sous forme de tas binaire (i.e. pas l'implémentation vue dans le cours)
         \end{itemize}
-        \item Reste à voir un algorithme plus général : l'algorithme de Bellmann 
+        \item Reste à voir un algorithme plus général : l'algorithme de Bellman 
     \end{itemize}
 \end{frame}
 
-% on passe à l'algorithme de Bellmann 
+% on passe à l'algorithme de Bellman 
 
-\begin{frame}{Algorithme de Bellmann}
+\begin{frame}{Algorithme de Bellman}
     \begin{itemize}
         \item Hypothèse : le graphe ne contient pas de circuit absorbant
         \item Idée : Par rapport à l'algorithme de Dijkstra, on remet en cause tous les chemins à chaque itération 
@@ -440,7 +440,7 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
 \begin{frame}[fragile]
     \frametitle{Algorithme}
     \begin{algorithmic}
-        \Function{Bellmann}{$G,s$}
+        \Function{Bellman}{$G,s$}
             \State dist \gets [0,$\infty$,...,$\infty$]
             \For{$m \in \{1,...,n-2\}$} 
                 \For{$x \in S$} 
@@ -451,8 +451,9 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
     \end{algorithmic}
 \end{frame}
 
-\input{exemple-bellmann}
+\input{exemple-bellman}
 
-% TODO vérifier l'orthographe de Bellmann 
+
+% TODO version matricielle de l'algo de Bellmman
 
 
