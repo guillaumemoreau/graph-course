@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+\clip (0,0) rectangle (9.0,6.0);
+\Vertex[x=0.450,y=3.000,size=0.5,opacity=0.5,label=s]{0}
+\Vertex[x=3.150,y=5.700,size=0.5,opacity=0.5,label=A]{1}
+\Vertex[x=3.150,y=1.920,size=0.5,opacity=0.5,label=B]{2}
+\Vertex[x=3.150,y=0.300,size=0.5,opacity=0.5,label=C]{3}
+\Vertex[x=5.850,y=5.700,size=0.5,opacity=0.5,label=D]{4}
+\Vertex[x=6.525,y=3.000,size=0.5,opacity=0.5,label=E]{5}
+\Vertex[x=5.850,y=0.300,size=0.5,opacity=0.5,label=F]{6}
+\Vertex[x=8.550,y=3.000,size=0.5,opacity=0.5,label=t]{7}
+\Edge[,lw=1.0,bend=-12.68,label=20 [35],Direct](0)(1)
+\Edge[,lw=1.0,bend=-12.68,label=0 [35],Direct](0)(2)
+\Edge[,lw=1.0,bend=-12.68,label=0 [40],Direct](0)(3)
+\Edge[,lw=1.0,bend=-12.68,label=20 [20],Direct](1)(4)
+\Edge[,lw=1.0,bend=-12.68,label=0 [10],Direct](1)(6)
+\Edge[,lw=1.0,bend=-12.68,label=0 [15],Direct](2)(4)
+\Edge[,lw=1.0,bend=-12.68,label=0 [25],Direct](2)(5)
+\Edge[,lw=1.0,bend=-12.68,label=0 [5],Direct](2)(6)
+\Edge[,lw=1.0,bend=-12.68,label=0 [20],Direct](3)(5)
+\Edge[,lw=1.0,bend=-12.68,label=0 [20],Direct](3)(6)
+\Edge[,lw=1.0,bend=-12.68,label=20 [20],Direct](4)(7)
+\Edge[,lw=1.0,bend=-12.68,label=0 [30],Direct](5)(7)
+\Edge[,lw=1.0,bend=-12.68,label=0 [60],Direct](6)(7)
+\end{tikzpicture}
