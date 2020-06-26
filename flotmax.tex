@@ -140,6 +140,10 @@
             \item si $f(a) > 0$ alors on ajoute $a$ \textbf{en sens inverse} dans $A^r$ avec une capacité égale à $f(a)$
         \end{itemize}
     \end{definition}
+    \begin{itemize}
+    \item Un parcours en largeur d'abord (BFS) va permettre de trouver l'ensemble des sommets atteignables depuis $s$ dans $G^r$. Si on mémorise pour chaque sommet visité le sommet d'où l'on arrive, on construit ainsi un arbre couvrant. 
+    \item On a donc un chemin unique de $s$ à $t$ 
+\end{itemize}
 \end{frame}
 
 
@@ -149,3 +153,5 @@
     \scalebox{0.65}{\input{fig/ff-1.tex}}
 \end{center}
 \end{frame} 
+
+\input{exemple-ff}

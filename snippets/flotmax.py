@@ -9,6 +9,7 @@ import mygraphs
 import math
 from queue import Queue
 
+color_dict = {True: 'blue', False: 'black'}
 
 # construire le graphe résiduel 
 def build_graphe_residuel(G):
@@ -96,6 +97,8 @@ def path_from_BFS(g1,dep,arr):
     
 def FordFulkerson(G,s,t):
     # on construit un premier graphe résiduel 
+    for e in G.es:
+        e["dirty"] = False
     iteration = 0
     Gr = build_graphe_residuel(G)
     path = path_from_BFS(Gr, get_sommet_by_name(Gr, "s"), get_sommet_by_name(Gr, "t"))
@@ -105,9 +108,11 @@ def FordFulkerson(G,s,t):
         # on sauve le graphe avec le flot en l'état
         build_labels(G, True)
         visual_style['edge_label'] = G.es["label"]
+        visual_style['edge_color'] = [color_dict[g] for g in G.es["dirty"]]
         network2tikz.plot(G, 'ff-'+str(iteration)+'.tex', **visual_style)
         build_labels(Gr, False)
         visual_style['edge_label'] = Gr.es["label"]
+        visual_style['edge_color'] = 'black'
         network2tikz.plot(Gr, 'ffr-'+str(iteration)+'.tex', **visual_style)
     # on parcourt le chemin pour trouver alpha
         alpha = math.inf
@@ -126,6 +131,8 @@ def FordFulkerson(G,s,t):
             prev = sommet
         print(alpha)
         # on met à jour le graphe
+        for e in G.es:
+            e["dirty"] = False
         for sommet in path:
             vs = get_sommet_by_name(G, sommet)
             if vs["name"] != "s":
@@ -136,10 +143,12 @@ def FordFulkerson(G,s,t):
                     if edges.source_vertex["name"] == ps["name"] and edges.target_vertex["name"] == vs["name"]:
                         # arc dans le sens s vers t
                         edges["f"] = edges["f"] + alpha
+                        edges["dirty"] = True
                         found = True
                     if edges.source_vertex["name"] == vs["name"] and edges.target_vertex["name"] == ps["name"]:
                         # arc dans le sens t vers s
                         edges["f"] = edges["f"] - alpha
+                        edges["dirty"] = True
             prev = sommet
 
         # on recalcule le graphe résiduel
@@ -150,9 +159,11 @@ def FordFulkerson(G,s,t):
     # on sauve le graphe avec le flot en l'état
     build_labels(G, True)
     visual_style['edge_label'] = G.es["label"]
+    visual_style['edge_color'] = [color_dict[g] for g in G.es["dirty"]]
     network2tikz.plot(G, 'ff-'+str(iteration)+'.tex', **visual_style)
     build_labels(Gr, False)
     visual_style['edge_label'] = Gr.es["label"]
+    visual_style['edge_color'] = 'black'
     network2tikz.plot(Gr, 'ffr-'+str(iteration)+'.tex', **visual_style)
 
 G = mygraphs.build_exemple_ff()
