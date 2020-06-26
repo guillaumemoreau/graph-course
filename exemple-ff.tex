@@ -1,0 +1,7 @@
+
+\directlua{\detokenize{
+    for i=0,6,1 do
+        tex.sprint("\\begin{frame}{Flot}\\begin{center} \\input{genfig/ff-", i, ".tex} \\end{center} \\end{frame}")
+        tex.sprint("\\begin{frame}{Graphe résiduel}\\begin{center} \\input{genfig/ffr-", i, ".tex} \\end{center} \\end{frame}")
+    end
+}}
