@@ -2,6 +2,27 @@ import igraph as ig
 from network2tikz import plot
 import random 
 
+# exemple de graphe pour FF 
+def build_exemple_ff():
+    g = ig.Graph(8,[],True)
+    g.vs["name"] = ["s","A","B","C","D","E","F","t"]
+    g.add_edge(0,1)["c"] = 35
+    g.add_edge(0,2)["c"] = 35
+    g.add_edge(0,3)["c"] = 40
+    g.add_edge(1,4)["c"] = 20
+    g.add_edge(1,6)["c"] = 10
+    g.add_edge(2,4)["c"] = 15
+    g.add_edge(2,5)["c"] = 25
+    g.add_edge(2,6)["c"] = 5
+    g.add_edge(3,5)["c"] = 20
+    g.add_edge(3,6)["c"] = 20
+    g.add_edge(4,7)["c"] = 20
+    g.add_edge(5,7)["c"] = 30
+    g.add_edge(6,7)["c"] = 60
+
+    return g
+
+
 # graphe acyclique pour les PCC 
 def build_exemple_pcc():
     g = ig.Graph(8,[],True)

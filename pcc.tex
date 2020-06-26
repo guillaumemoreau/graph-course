@@ -454,6 +454,32 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
 \input{exemple-bellman}
 
 
-% TODO version matricielle de l'algo de Bellmman
 
+
+\begin{frame}[fragile]
+    \frametitle{Version matricielle de l'algorithme de Bellman}
+    \begin{itemize}
+        \item Si on utilise une représentation sous forme de matrice d'adjacence $m_{i,j}$, l'algorithme de Bellman s'écrit alors sous forme matricielle 
+    \end{itemize}
+    \begin{algorithmic}[1]
+        \Function{bellman\_matriciel}{G,s}
+        \State $\Pi_{i,j}^0 = \left\{ 
+            \begin{array}{l}
+                \mbox{pondération de l'arc s'il existe} \\
+                0\mbox{ si } i=j \\
+                +\infty \mbox{ sinon}
+            \end{array}
+        \right.$
+        \For{$m \in {1,...,n}$} 
+            \For{$i \in {1,...,n}$}
+                \For{$j \in {1,...,n}$}
+                    \State $\Pi_{i,j}^m = \min \left[\Pi_{i,j}^{m-1}, \Pi_{i,m}^{m-1} + \Pi_{m,j}^{m-1} \right] $
+                \EndFor
+            \EndFor
+        \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{frame}
+
+% TODO : ça vaut la peine d'ajouter un exemple ? 
 
