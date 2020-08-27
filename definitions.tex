@@ -1,9 +1,9 @@
 % Définitions pour commencer
 
 \begin{frame}{Graphe}
-    \label[def:graphe]
+    \label{def:graphe}
     \begin{definition}
-        Un \emph{graphe orienté} est un ensemble de \emph{sommets} connectés par des emph{arcs}. Formellement, $G=(S,A)$ avec
+        Un \emph{graphe orienté} est un ensemble de \emph{sommets} connectés par des \emph{arcs}. Formellement, $G=(S,A)$ avec
         \begin{itemize}
             \item $S$ un ensemble de sommets 
             \item $A$ une relation binaire sur $S$ (donc une partie de $S \times S$)
@@ -31,7 +31,7 @@
 
 \begin{frame}{Graphe}
     \begin{definition}
-        Un \emph{graphe non orienté} est un ensemble de \emph{sommets} connectés par des emph{arêtes}. Formellement, $G=(S,A)$ avec
+        Un \emph{graphe non orienté} est un ensemble de \emph{sommets} connectés par des \emph{arêtes}. Formellement, $G=(S,A)$ avec
         \begin{itemize}
             \item $S$ un ensemble de sommets 
             \item $A$ un ensemble de paires non-ordonnées de sommets
@@ -58,7 +58,7 @@
 
 \begin{frame}{Vocabulaire}
     \begin{definition}
-        Dans un graphe $G(S,A)$ orienté ou non, un sommet $y$ est dit \emph{adjacent} à $x$ si et seulement si $(x,y \in A$)
+        Dans un graphe $G(S,A)$ orienté ou non, un sommet $y$ est dit \emph{adjacent} à $x$ si et seulement si $x,y \in A$
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
@@ -148,7 +148,7 @@
 \begin{frame}{Vocabulaire}
     \begin{definition}
         \label{def:chemin}
-        Dans un graphe $G=(S,A)$ orienté ou non, un \emph{chemin} est une séquence de sommets $s_0,...s_n$ où chaque paire de sommets consécutifs $(s_k,s_{k+1})$ appartient à $a$. 
+        Dans un graphe $G=(S,A)$ orienté ou non, un \emph{chemin} est une séquence de sommets $s_0,...s_n$ où chaque paire de sommets consécutifs $(s_k,s_{k+1})$ appartient à $A$. 
     \end{definition}
     \begin{example}
         \begin{tikzpicture}
