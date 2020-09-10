@@ -20,7 +20,8 @@
             \node[lettre] (6) at (2,-1) {6}; 
             \node (s) at (6,0) {6 sommets, 7 arcs};
             \draw[edge] (1) -> (4);
-            \draw[edge] (1) -> (2) -> (4);
+            \draw[edge] (1) -> (2);
+            \draw[edge] (2) -> (4);
             \draw[edge] (2) -> (3);
             \draw[edge] (6) -> (5);
             \draw[edge] (4.260) -> (3.100);
@@ -69,7 +70,8 @@
             \node[lettre] (5) at (2,0) {5};
             \node[lettre] (6) at (2,-1) {6}; 
             \draw[edge] (1) -> (4);
-            \draw[edge] (1) -> (2) -> (4);
+            \draw[edge] (1) -> (2); 
+            \draw[edge] (2) -> (4);
             \draw[edge] (2) -> (3);
             \draw[edge] (6) -> (5);
             \draw[edge] (4.260) -> (3.100);
@@ -112,7 +114,7 @@
             \draw (6) -- (5);
             \draw (4) -- (3);
             \node (l) at (6,0) {le sommet 3 est de degré 2};
-            \node (ll) at (6,-1) {le sommet 3 est de degré 2};
+            \node (ll) at (6,-1) {le sommet 4 est de degré 3};
         \end{tikzpicture}
     \end{example}
 \end{frame}
@@ -134,7 +136,8 @@
             \node[lettre] (5) at (2,0) {5};
             \node[lettre] (6) at (2,-1) {6}; 
             \draw[edge] (1) -> (4);
-            \draw[edge] (1) -> (2) -> (4);
+            \draw[edge] (1) -> (2);
+            \draw[edge] (2) -> (4);
             \draw[edge] (2) -> (3);
             \draw[edge] (6) -> (5);
             \draw[edge] (4.260) -> (3.100);
@@ -174,7 +177,7 @@
             \node[lettre] (5) at (2,0) {5};
             \node[lettre] (6) at (2,-1) {6}; 
             \draw[eedge] (1) -- (4);
-            \draw (1) -- (2);
+            \draw[eedge] (1) -- (2);
             \draw (2) -- (4);
             \draw[eedge] (2) -- (3);
             \draw (6) -- (5);
@@ -219,7 +222,7 @@
 
         \begin{itemize}
             \item elle est réflexive, symétrique et transitive 
-            \item ses classes d'équivalences sont les composantes fortement connexes du graphe 
+            \item ses classes d'équivalence sont les composantes fortement connexes du graphe 
         \end{itemize}
     \end{block}
 \end{frame}
