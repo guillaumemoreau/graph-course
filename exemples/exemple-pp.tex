@@ -5,6 +5,13 @@
 \usetikzlibrary{graphdrawing.force}
 \usetikzlibrary{arrows}
 \usepackage{tikz-network}
+% tentative pour les algorithmes 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% package ams 
+\usepackage{amssymb}
+\def\nbR{\ensuremath{\mathrm{I\! R}}}
 
 \title{Exemples de parcours en profondeur}
 \author{Guillaume Moreau}
@@ -12,16 +19,90 @@
 \begin{document}
     \maketitle
 
+    \begin{frame}[fragile]
+        \frametitle{Parcours en profondeur}
+            \begin{itemize}
+                \item On utilise un tableau de booléens 
+                \begin{itemize}
+                    \item \emph{vrai} si le sommet a été vu 
+                    \item \emph{faux} sinon 
+                \end{itemize}
+                \item on construit une fonction récursive \texttt{visite(i)} qui va explorer les sommets non vus à partir de $i$ ($i$ inclus)
+            \end{itemize}
+            
+            % test
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{visite}{$i$ : sommet}
+                    \State vu[i] \gets true
+                    \For{$j \in Adj[i]$}
+                        \If{$vu[j] = false$}
+                            \State visite(j)
+                        \EndIf
+                    \EndFor
+                    \EndFunction
+                 \end{algorithmic}
+                \caption{Parcours en profondeur à partir d'un sommet}
+                \label{alg:prof:visite}
+                \end{algorithm}
+        \end{frame}
+        
+        
+        
+        % ajouter la version avec les dates de visite ? pas sûr de l'intérêt ici...
+        
+        \begin{frame}{Parcours en profondeur}
+            \begin{itemize}
+                \item Attention : l'algorithme n'est pas correct pour parcourir tout le graphe
+                \item De fait, il ne fonctionne que si le graphe est connexe 
+                \pause 
+                \item On peut ajouter une boucle sur tous les sommets 
+                \pause 
+                \begin{algorithm}[H]
+                    \begin{algorithmic}[1]
+                        \State vu \gets [$false$,...,$false$]
+                        \For{$i \in S$}
+                            \If{$vu[i] = false$}
+                                \State visite(i)
+                            \EndIf
+                        \EndFor
+                     \end{algorithmic}
+                    \caption{Parcours en profondeur}
+                    \label{alg:prof:alg}
+                    \end{algorithm}
+                \pause 
+                \item convention implicite : on parcourt les sommets et les adjacents en ordre croissant
+            \end{itemize}
+        \end{frame}
+        
+        
+         
+        \begin{frame}{Efficacité de l'algorithme}
+            \begin{itemize}
+                \item On marque $vu[i]$ une seule fois 
+                \begin{itemize}
+                    \item Donc \texttt{visite(i)} termine toujours
+                    \item \texttt{visite(i)} n'est appelée qu'une seule fois par sommet
+                \end{itemize}
+                \item Le temps de calcul est dominé par les itérations de boucles
+                \begin{itemize}
+                    \item La boucle principale s'exécute $n$ fois 
+                    \item La boucle secondaire s'exécute globalement $\sum_i | Adj[i] | = m$
+                \end{itemize}
+                \item La complexité pire cas est en $n+m$, donc linéaire
+            \end{itemize}
+        \end{frame}
+        
 
     \directlua{\detokenize{
         for i=0,24,1 do
-            tex.sprint("\\begin{frame}\\begin{center} \\input{genfig/pp-", i, ".tex} \\end{center} \\end{frame}")
+            tex.sprint("\\begin{frame}\\begin{center} \\input{../genfig/pp-", i, ".tex} \\end{center} \\end{frame}")
         end
     }}
 
-        \directlua{\detokenize{
-            for i=0,30,1 do
-                tex.sprint("\\begin{frame}\\begin{center} \\includegraphics[height=\\textheight]{genfig/rg-", i, ".pdf} \\end{center} \\end{frame}")
-            end
-        }}
+        % \directlua{\detokenize{
+        %     for i=0,30,1 do
+        %         tex.sprint("\\begin{frame}\\begin{center} \\includegraphics[height=\\textheight]{genfig/rg-", i, ".pdf} \\end{center} \\end{frame}")
+        %     end
+        % }}
 \end{document}
