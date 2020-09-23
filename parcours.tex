@@ -370,14 +370,14 @@
                 \begin{algorithmic}
                     \Function{visite}{$i$ : sommet}
                     \State P \gets empty() 
-                    \State vi[i] \ gets true 
+                    \State vi[i] \gets true 
                     \State push(P,i) 
                     \While{!empty(P)}
                         \State k \gets pop(P)
                         \For{$j \in Adj[k]$}
                             \If{!vu[j]} 
                             \State vu[k] \gets true 
-                            \State push(P,j
+                            \State push(P,j)
                             \EndIf
                         \EndFor
                     \EndWhile
@@ -397,3 +397,24 @@
         \end{columns}    
     \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Parcours en largeur : python}
+    \begin{pythoncode}
+def visite(i):
+    q = Queue()
+    i["vu"] = True
+    q.put(i)
+    while q.empty() == False:
+        k = q.get()
+        for j in g1.successors(k):
+            if g1.vs[j]["vu"] == False:
+                g1.vs[j]["vu"] = True
+                q.put(g1.vs[j])
+
+for s in g1.vs:
+    s["vu"] = False
+for i in g1.vs:
+    if i["vu"] == False:
+        visite(i)        
+    \end{pythoncode}
+\end{frame}

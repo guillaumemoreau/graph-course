@@ -80,3 +80,74 @@
 
 % TODO faut-il inclure l'algorithme de Tarjan à titre de comparaison ?
 
+\begin{frame}[fragile]
+\frametitle{Algorithme de Kosaraju}
+\begin{pythoncode}
+# Parcours en profondeur avec stockage de l'ordre suffixe 
+def visite(g,i):
+    global ordre_suffixe
+    i["vu"] = True
+    for j in g.successors(i):
+        if g.vs[j]["vu"] == False:
+            visite(g,g.vs[j])
+    ordre_suffixe.append(i["nom"])
+
+
+\end{pythoncode}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Algorithme de Kosaraju}
+\begin{pythoncode}    
+# initialisation
+for s in g1.vs:
+    s["vu"] = False
+ordre_suffixe = []
+for i in g1.vs:
+    if i["vu"] == False:
+        visite(g1,i)
+
+\end{pythoncode}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Algorithme de Kosaraju}
+\begin{pythoncode}    
+
+#inversion du graphe 
+ginv = ig.Graph(24,[],True)
+n = 1
+for v in ginv.vs:
+    v["nom"] = str(n) 
+    v["vu"] = False 
+    n = n + 1
+for e in g1.es: 
+    ginv.add_edge(e.target,e.source)
+
+ncb = 1
+
+while ordre_suffixe:
+    i = ordre_suffixe.pop()
+    e = ginv.vs.select(nom = i)[0]
+    if (e["vu"] == False):
+        e["comp"] = ncb
+        visite_k(ginv,e,ncb)
+        ncb = ncb+1
+\end{pythoncode}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Algorithme de Kosaraju}
+    \begin{pythoncode}   
+    
+    def visite_k(ginv, v, ncb):
+        v["vu"] = True
+        v["comp"] = ncb
+        export_graphe(ginv)
+        for i in v.successors():
+            if i["vu"] == False:
+                visite_k(ginv, i, ncb)
+    \end{pythoncode}
+    \end{frame}
+    

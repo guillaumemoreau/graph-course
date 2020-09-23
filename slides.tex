@@ -59,18 +59,8 @@
 
 
 %% tout ce qui est relatifs aux extraits de code
-\usepackage{listings}
-\usepackage{lstautogobble}
-\lstloadlanguages{C++}
-\lstset{% paramètres généraux des listings
-	language=C++,
-	basicstyle=\ttfamily\tiny, %% style général : chasse fixe, taille minimale
-	keywordstyle=\color{webgreen}\bfseries, % les mots clés en vert et gras
-	stringstyle=\color{blue}, % les chaines de caractères en bleu
-	commentstyle=\color{webbrown},
-	autogobble
-}
-
+\usepackage{minted}
+\newminted{python}{fontsize=\footnotesize}
 
 \usepackage{myslides}
 
