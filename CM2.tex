@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                        %%
+%%                 Support de cours Programmation orientée objet                  %%
+%%                                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Guillaume Moreau (EC Nantes)
+%% création : 21/06/2004
+%% dernière modification : 23/06/2004
+%% historique :
+
+%% il faut fixer l'URL base pour que les liens relatifs fonctionnent...
+%% bizaremment fichu mais c'est comme ça.
+
+\documentclass[allowframebreaks,xcolor=dvipsnames]{beamer}
+
+\mode<presentation>
+{
+\usetheme{Antibes}
+  % or ...
+
+  %\setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+\useoutertheme{infolines}
+\usecolortheme[named=RoyalBlue]{structure}
+
+\uselanguage{french}
+\languagepath{french}
+\deftranslation[to=french]{definition}{définition}
+\deftranslation[to=french]{Definition}{D\'efinition}
+\deftranslation[to=french]{example}{exemple}
+\deftranslation[to=french]{Example}{Exemple}
+\deftranslation[to=french]{algorithm}{algorithme}
+\deftranslation[to=french]{Algorithm}{Algorithme}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+
+\usepackage[T1]{fontenc}
+% or whatever
+
+\usepackage[french]{babel}
+% or whatever
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{graphdrawing.force}
+\usetikzlibrary{arrows}
+\usepackage{tikz-network}
+
+%% pour afficher le plan à chaque début de section
+%\AtBeginSection[]{
+%  \begin{frame}{Plan}
+%  \tiny \tableofcontents[currentsection, hideothersubsections]
+%  \end{frame}
+%}
+
+
+%% tout ce qui est relatifs aux extraits de code
+\usepackage{minted}
+\newminted{python}{fontsize=\footnotesize}
+
+
+\usepackage{myslides}
+
+%% mes styles pour les graphes
+\usepackage{graphstyle}
+
+%\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Option INFO / MADIS] % (optional, use only with long paper titles)
+{Mathématiques discrètes : algorithmique des graphes}
+
+\author[G. Moreau]{Guillaume Moreau\\
+\texttt{guillaume.moreau@ec-nantes.fr}}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Ecole Centrale de Nantes] % (optional, but mostly needed)
+{
+  Ecole Centrale de Nantes
+}
+
+\date % (optional)
+{Septembre 2020}
+
+\subject{Théorie et algorithmique des graphes}
+
+
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{* }{rgb}{0,.5,0}
+\definecolor{. }{rgb}{.6,0,0}
+
+% option d'affiche de table des matières : http://mirror.unl.edu/ctan/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+% section 10.5
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Plan}
+       \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/show/hide,subsubsectionstyle=hide/hide]
+   \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+	\begin{frame}
+		\frametitle{Plan}
+		\tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/show/hide]
+	\end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Plan du cours}
+  \tableofcontents[hideallsubsections]
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+% TODO ajouter un index
+
+
+\section{Parcours de graphes}
+
+\input{parcours}
+
+\section{Calcul de la fermeture transitive}
+
+\input{calcul-ft.tex}
+
+\section{Calcul des composantes fortement connexes}
+
+\input{calcul-cfc.tex}
+
+%
+\begin{frame}{Quelques références}
+  \begin{itemize}
+    \item \href{https://www.hackerearth.com/fr/practice/algorithms/graphs/graph-representation/tutorial/}{HackerEarth}
+    \item \href{https://caseine.org/course/view.php?id=147}{Cours de Nadia Brauner}, Université Grenoble-Alpes 
+    \item Cours de \href{https://people.irisa.fr/David.Pichardie/}{David Pichardie}, ENS Rennes 
+  \end{itemize}
+\end{frame}
+\end{document}

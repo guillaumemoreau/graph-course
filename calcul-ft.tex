@@ -1,0 +1,48 @@
+\begin{frame}{Calcul de la fermeture transitive dans un graphe \emph{creux}}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{algorithmic}
+            \Function{visite}{l,i}
+            \State $A^*[l,i]$ \gets True 
+            \For{$j \in \Gamma(i)$} 
+            \If{non $A^*[l,j]$}  
+                \State visite(l,j)
+            \EndIf
+            \EndFor
+            \EndFunction
+        \end{algorithmic}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{algorithmic}
+            \Function{fermeture transitive}{}
+                \State $A^*$ = [[False,False],...[False,False]]
+                \For{$i \in S$} 
+                    \State visite(i,i)
+                \EndFor \\
+            \Return $A^*$
+            \EndFunction
+        \end{algorithmic}
+    \end{column}
+    \end{columns}
+    \end{frame}
+    
+    \begin{frame}{Exemple}
+    \begin{center}
+        \input{genfig/ft0}
+    \end{center}
+    \end{frame}
+    
+    \begin{frame}{Exemple : fermeture réflexo-transitive}
+    \begin{center}
+        \input{genfig/ft1}
+    \end{center}
+        \end{frame}
+    
+    \begin{frame}{Calcul de la fermeture transitive}
+    \begin{itemize}
+        \item La calcul se fait en ${\cal O}(nm)$ avec $n$ parcours en profondeur
+        \item En pratique, $A*$ est plutôt dense... On peut faire le calcul de façon matricielle
+        \item cf. algorithme de Floyd-Warshall en TD 
+    \end{itemize}
+    \end{frame}
+    
