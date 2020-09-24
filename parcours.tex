@@ -397,6 +397,40 @@
         \end{columns}    
     \end{frame}
 
+    \begin{frame}[fragile]
+        \frametitle{Algorithme de parcours en largeur}
+            \begin{columns}
+                \begin{column}{.55\textwidth}
+                    \begin{algorithmic}
+                        \Function{visite}{$i$ : sommet}
+                        \State Q \gets empty() 
+                        \State vi[i] \gets true 
+                        \State Q.add(i) 
+                        \While{!Q.empty()}
+                            \State k \gets Q.get()
+                            \For{$j \in Adj[k]$}
+                                \If{!vu[j]} 
+                                \State vu[k] \gets true 
+                                \State Q.add(i)
+                                \EndIf
+                            \EndFor
+                        \EndWhile
+                        \EndFunction
+                    \end{algorithmic}
+                \end{column}
+                \begin{column}{.45\textwidth}
+                    \begin{algorithmic}
+                        \State vu \gets [$false$,...,$false$]
+                        \For{$i \in S$}
+                            \If{$vu[i] = false$}
+                                \State visite(i)
+                            \EndIf
+                        \EndFor
+                    \end{algorithmic}            
+                \end{column}
+            \end{columns}    
+        \end{frame}
+    
 \begin{frame}[fragile]
 \frametitle{Parcours en largeur : python}
     \begin{pythoncode}
