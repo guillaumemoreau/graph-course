@@ -78,6 +78,67 @@
 
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Algorithme de Kosaraju (partie 1)}
+        \begin{columns}
+            \begin{column}{.5\textwidth}
+                \begin{algorithmic}[1]
+                    \Function{visite}{$i$ : sommet}
+                    \State vu[i] \gets true
+                    \For{$j \in Adj[i]$}
+                        \If{$vu[j] = false$}
+                            \State visite(j)
+                        \EndIf
+                    \EndFor
+                    \State \textcolor{blue}{os.add(i)}
+                    \EndFunction
+                \end{algorithmic}
+            \end{column}
+            \begin{column}{.5\textwidth}
+                \begin{algorithmic}[1]
+                    \State vu \gets [$false$,...,$false$]
+                    \State \textcolor{blue}{os \gets []}
+                    \For{$i \in S$}
+                        \If{$vu[i] = false$}
+                        \State visite(i)
+                        \EndIf
+                    \EndFor
+                    \end{algorithmic}            
+            \end{column}
+        \end{columns}    
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Algorithme de Kosaraju (partie 2)}
+            \begin{columns}
+                \begin{column}{.5\textwidth}
+                    \begin{algorithmic}[1]
+                        \Function{visite\_k}{ginv,$i$ : sommet,ncb}
+                        \State vu[i] \gets true
+                        \State cfc[i] \gets ncb
+                        \For{$j \in Adj[i]$}
+                            \If{$vu[j] = false$}
+                                \State visite\_k(ginv,j,ncb)
+                            \EndIf
+                        \EndFor
+                        \EndFunction
+                    \end{algorithmic}
+                \end{column}
+                \begin{column}{.5\textwidth}
+                    \begin{algorithmic}[1]
+                        \While{!os.empty()}
+                        \State i \gets os.pop() 
+                        \If{vu[i] == False}
+                            \State cfc[i] \gets ncb
+                            \State visite\_k(ginv,i,ncb)
+                            \State ncb \gets ncb+1
+                        \EndIf
+                        \EndWhile
+                        \end{algorithmic}            
+                \end{column}
+            \end{columns}    
+        \end{frame}
+    
 % TODO faut-il inclure l'algorithme de Tarjan à titre de comparaison ?
 
 \begin{frame}[fragile]
@@ -144,7 +205,6 @@ while ordre_suffixe:
     def visite_k(ginv, v, ncb):
         v["vu"] = True
         v["comp"] = ncb
-        export_graphe(ginv)
         for i in v.successors():
             if i["vu"] == False:
                 visite_k(ginv, i, ncb)
