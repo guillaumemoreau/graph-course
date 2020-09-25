@@ -108,6 +108,7 @@
 \end{frame}
 
 \begin{frame}{Schéma de l'algorithme de Ford-Fulkerson}
+\label{alg:ford-fulkerson}
     \begin{algorithmic}
         \Function{ff}{(G,s)}
         \State x = (0,...,0) 
@@ -155,3 +156,42 @@
 \end{frame} 
 
 \input{exemple-ff}
+
+\begin{frame}{Choix de la chaine augmentante}
+    \begin{itemize}
+        \item L'exemple précédent effectue un choix de chaine augmentante, mais n'importe laquelle peut être choisie 
+        \item Le flot maximal n'a pas de raison d'être unique
+        \item Le choix des chaînes augmentantes influe sur le nombre d'itérations 
+    \end{itemize}
+    \begin{example}
+        \begin{center}
+        \includegraphics[height=3.5cm]{fig/flotcon-1.pdf}
+        \includegraphics[height=3.5cm]{fig/flotcon-2.pdf}
+        \includegraphics[height=3.5cm]{fig/flotcon-3.pdf}
+        \end{center}
+    \end{example}
+\end{frame}
+
+\begin{frame}{Flot maximal à coût minimal}
+    \begin{itemize}
+        \item On ajoute une notion de coût unitaire aux graphes utilisés précédemment : $d : A \longrightarrow \nbR^+$
+        \begin{itemize}
+            \item i.e. le transport d'une quantité $f(a)$ sur un arc $a$ a un coût $d(a)*f(a)$ 
+        \end{itemize}
+        \item On cherche alors parmi tous les flots maximaux $f$ celui qui minimise $\sum_{a \in A} f(a)d(a)$
+        \item 2 approches possibles 
+        \begin{itemize}
+            \item Partir du flot nul (de coût minimal) et augmenter progressivement le flot (Algorithme de \Roy)
+            \item Partir d'un flot maximal et en faire diminuer progressivement le coût (Algorithme de Bennington)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Graphe d'écart}
+    def
+\end{frame}
+
+\begin{frame}{Algorithme de Roy}
+\label{alg:roy}
+def 
+\end{frame}
