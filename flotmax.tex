@@ -8,7 +8,7 @@
         \item On se donne 
         \begin{itemize}
             \item un graphe orienté $G=(S,A)$
-            \item une capacité $c : A \longrightarrow \nbR^+$
+            \item une fonction de capacité $c : A \longrightarrow \nbR^+$
             \item 2 sommets particuliers de $S$ : $s$ et $t$ 
         \end{itemize}
     \end{itemize}
@@ -187,11 +187,26 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Graphe d'écart}
-    def
-\end{frame}
 
 \begin{frame}{Algorithme de Roy}
 \label{alg:roy}
-def 
+\begin{algorithmic}
+    \State $x_0 = (0,...,0)$, $k$=0 
+    \State Construire le graphe résiduel $G_k^r$
+    \While{il existe un chemin de $s$ à $t$ dans $G^r_k$}
+        \State Soit $\mu_k$ le plus court chemin de $s$ à $t$ dans $G_k^r$
+        \State Soit $c$ la plus petite capacité des arcs de $\mu_k$ 
+        \State $$\forall (i,j) \in A, x_{k+1}(i,j) = \left\{ 
+            \begin{array}{l}
+                x_k(i,j)+c \textrm{ si } (i,j) \in \mu_k \\
+                x_k(i,j)-c \textrm{ si } (j,i) \in \mu_k \\
+                x_k(i,j) \textrm{ sinon}
+            \end{array}
+            \right. $$
+        \State $k$ \gets $k+1$
+    \EndWhile
+\end{algorithmic}
 \end{frame}
+
+\input{exemple-roy}
+
