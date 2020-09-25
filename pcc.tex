@@ -135,7 +135,7 @@
 \begin{frame}{Propriété des cycles}
 
     \begin{block}{Hypothèse}
-        On considère un graphe non-orienté pondéré connexe. On suppose que toutes ses arêtes ont des poids différents
+        On considère un graphe non-orienté pondéré connexe. On suppose que toutes ses arêtes ont des poids différents.
     \end{block}
 
     Cela assure l'unicité d'un arbre couvrant minimal (admis). Les algorithmes que nous allons voir n'ont pas besoin de cette hypothèse mais l'arbre couvrant minimal n'est plus unique. 
@@ -206,7 +206,7 @@
     end
 }}
 
-\begin{frame}{Les algoroithmes gloutons}
+\begin{frame}{Les algorithmes gloutons}
     \begin{itemize}
         \item Approche algorithmique générale pour résoudre des problèmes d'optimisation 
         \item Construction progressive d'une solution 
@@ -222,7 +222,7 @@
     \begin{itemize}
         \item On colorie toutes les arêtes de $G$ en noir. Puis on va progressivement colorier en rouge les arêtes de l'arbre couvrant minimal. A chaque étape le sous-graphe rouge est un arbre. On colorie en rouge les sommets reliés par des arêtes rouges
         \item On choisit un sommet de départ
-        \item On considère la coupe distinguant  les sommets rouges des autres. On choisit une arête traversante minimale pour cette coupe et on le colorie en rouge. On colorie également en rouge le sommet qui ne l'était pas encore.
+        \item On considère la coupe distinguant  les sommets rouges des autres. On choisit une arête traversante minimale pour cette coupe et on la colorie en rouge. On colorie également en rouge le sommet qui ne l'était pas encore.
         \item On répète jusqu'à avoir colorié en rouge tous les sommets 
     \end{itemize}
 \end{frame}
