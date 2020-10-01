@@ -345,7 +345,7 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
             \If{i=s}
                 dist[i] \gets 0
             \Else
-                \For{j $\in \Gamma^{-1}(j)$}
+                \For{j $\in \Gamma^{-1}(i)$}
                     \If{dist[j]+c(j,i) < dist[i]}
                         \State dist[i] \gets  dist[j]+c(j,i)
                         \State pred[i] \gets j
@@ -413,7 +413,7 @@ def pp_topologique(G, listeSommets, x):
     \begin{algorithmic}[1]
         \Function{Dijkstra}{$G,s$}
             \State dist \gets [0,$\infty$,...,$\infty$]
-            \State $P$ \gets $S$, $T$ \gets $\{\}$
+            \State $T$ \gets $S$, $P$ \gets $\{\}$
             \While{$T$ non vide}
                 \State Choisir $x_0 \in T$ tel que \texttt{dist} minimal
                 \State $T$ \gets $T-\{ x_0 \}$, $P$ \gets $P \cup \{ x_0 \}$  
