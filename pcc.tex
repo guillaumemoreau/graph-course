@@ -371,6 +371,30 @@ Pour la suite, on pose l'hypothèse que nos graphes n'ont pas de circuit absorba
     \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Tri topologique}
+\begin{pythoncode}
+def tri_topologique(G):
+    listeSommets = []
+    for i in G.vs:
+        i["col"] = 0 # 0 pour blanc, 1 pour gris, 2 pour noir 
+    
+    for x in G.vs:
+        if x["col"] == 0:
+            pp_topologique(G,listeSommets,x)
+
+    return listeSommets
+
+def pp_topologique(G, listeSommets, x):
+    x["col"] = 1
+    for i in x.successors():
+        if i["col"] == 0:
+            pp_topologique(G,listeSommets,i)
+    
+    x["col"] = 2
+    listeSommets.append(x)
+\end{pythoncode}
+\end{frame}
 \input{exemple-ordinal}
 
 
