@@ -88,6 +88,37 @@ Pour simplifier, les villes ont été numérotées et les itinéraires possibles
 \end{center}
 \end{figure}
 
+\section{Voyages aériens}
+
+Une compagnie aérienne dessert différentes villes européennes. Le tableau~\ref{gr:airtravel} reprend les durées des vols entre ces différentes villes. 
+
+\begin{table}[htbp]
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline 
+ & \textbf{A}  & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{D} \\ 
+\hline 
+\textbf{A} &  & 1h30  & 2h &  & 2h15 \\ 
+\hline 
+\textbf{B} & 1h40 &  &  &  & 3h \\ 
+\hline 
+\textbf{C} & 2h20 &  &  & 2h55 &  \\ 
+\hline 
+\textbf{D} &  & 3h20 &  &  & 1h05 \\ 
+\hline 
+\textbf{E} & 2h25 & 3h10 & 1h10 &  &  \\ 
+\hline 
+\end{tabular} 
+\caption{Temps de vol entre les différentes villes}
+\label{gr:airtravel}
+\end{center}
+\end{table}
+
+\begin{enumerate}
+\item Quels sont les plus courts trajets entre les différentes villes ? Quel est l'algorithme à utiliser et pourquoi ?
+\item Comment modifier la méthode précédente pour tenir compte du temps d'escale dans chaque ville ? 
+\end{enumerate}
 \section{Débit réseau}
 
 On s'intéresse maintenant à un problème de réseau. Pour une visio-conférence, on doit envoyer des paquets de données d'un point A vers un point B. TCP/IP permettant un routage des paquets, les paquets de données peuvent circuler sur différentes connexions avec un débit différent. On fera l'hypothèse que les paquets arrivent en ordre. 
@@ -169,19 +200,6 @@ charter en tenant compte de ces contraintes.
    la solution trouvée ?
 \end{enumerate}
 
-\section{Grossiste en fleurs}
-
-Un grossiste en fleurs assure le transport depuis Marseille et Valence vers Paris. Ce transport est effectué par camionnette de Valence à Carpentras et de Marseille à Carpentras ou Grenoble, puis par train ou avion de Carpentras à Paris et par train de Grenoble à Paris. On désire étudier le transport global par semaine de façon à envoyer un maximum de fleurs à Paris à coût minimal bien entendu.
-
-Les camionnettes disponibles à Valence permettent d'acheminer au plus 400 cartons par semaine vers Carpentras au coût unitaire de 2 ; celles de Marseille 400 cartons dont la moitié vers Carpentras au coût unitaire de 3 et l'autre moitié vers Grenoble au coût de 2. De plus, on doit limiter le transport par le train à 300 cartons dont 200 au plus depuis Carpentras, le coût unitaire étant alors de 10 depuis Grenoble et de 9 depuis Carpentras. Par avion, le coût unitaire est de 16. 
-
-La production de Marseille ne peut dépasser 200 cartons, celle de Valence est toujours excédentaire.
-
-\begin{enumerate}
-\item Modéliser le problème sous forme de graphe 
-\item Après avoir simplifié au maximum le graphe, résoudre le problème à l'aide de l'algorithme de Roy.
-
-\end{enumerate}
 
 \end{document}
 %%% Local Variables: 
