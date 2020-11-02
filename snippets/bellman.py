@@ -49,15 +49,21 @@ def bellman(G,s):
             x["dist"] = x["dist1"]
             x["pred"] = x["pred1"]
 
+def nb_latex(n):
+    if n==float('inf'):
+        return '+\infty'
+    else:
+        return str(n)
+
 def export_latex_matrix(M):
     print('\\begin{pmatrix}')
     n = np.shape(M)[0]
     for i in range(0,n):
         for j in range(0,n):
             if j ==0:
-                s =  str(M[i,j])
+                s = nb_latex(M[i, j])
             else:
-                s = s + '& ' + str(M[i,j])
+                s = s + '& ' + nb_latex(M[i, j])
         s = s + '\\\\'
         print(s)
     print('\\end{pmatrix}')
