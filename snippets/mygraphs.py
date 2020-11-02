@@ -2,6 +2,26 @@ import igraph as ig
 from network2tikz import plot
 import random 
 
+# graphe pour l'exo sur les compagnies aériennes 
+def build_exo_airlines():
+    g = ig.Graph(5,[],True) 
+    g.vs["name"] = ["A","B","C","D","E"]
+    g.add_edge(0,1)["w"] = 90
+    g.add_edge(0,2)["w"] = 120
+    g.add_edge(0,4)["w"] = 135 
+    g.add_edge(1,0)["w"] = 100
+    g.add_edge(1,4)["w"] = 180
+    g.add_edge(2,0)["w"] = 140
+    g.add_edge(2,3)["w"] = 175
+    g.add_edge(3,1)["w"] = 200 
+    g.add_edge(3,4)["w"] = 65
+    g.add_edge(4,0)["w"] = 145
+    g.add_edge(4,1)["w"] = 190 
+    g.add_edge(4,2)["w"] = 70
+
+    return g 
+
+    
 # graphe merdique pour FF 
 def build_exemple_ff2():
     g = ig.Graph(4,[],True)
