@@ -135,33 +135,129 @@ Toujours sous réserve de l'hypothèse des variables indépendantes, il faudrait
 
 Une compagnie aérienne dessert différentes villes européennes. Le tableau~\ref{gr:airtravel} reprend les durées des vols entre ces différentes villes. 
 
-\begin{table}[htbp]
-\begin{center}
+On peut utiliser l'algorithme de Dijkstra au départ de chaque sommet. On le fait ici mais uniquement à titre d'illustration.
 
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline 
- & \textbf{A}  & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} \\ 
-\hline 
-\textbf{A} &  & 1h30  & 2h &  & 2h15 \\ 
-\hline 
-\textbf{B} & 1h40 &  &  &  & 3h \\ 
-\hline 
-\textbf{C} & 2h20 &  &  & 2h55 &  \\ 
-\hline 
-\textbf{D} &  & 3h20 &  &  & 1h05 \\ 
-\hline 
-\textbf{E} & 2h25 & 3h10 & 1h10 &  &  \\ 
-\hline 
-\end{tabular} 
-\caption{Temps de vol entre les différentes villes}
-\label{gr:airtravel}
-\end{center}
-\end{table}
+Le graphe est représenté figure~\label{fig:airline}.
 
-\begin{enumerate}
-\item Quels sont les plus courts trajets entre les différentes villes ? Quel est l'algorithme à utiliser et pourquoi ?
-\item Comment modifier la méthode précédente pour tenir compte du temps d'escale dans chaque ville ? 
-\end{enumerate}
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=12cm]{airline.pdf}
+    \caption{Graphe des liaisons entre villes}
+    \label{fig:airline}
+  \end{center}
+\end{figure}
+
+Les itérations de l'algorithme (au départ de A) sont décrites ci-dessous. 
+
+  
+\begin{tabular}{c|cccccc}
+  & \textbf{A}	&B	&C	&D	&E	& \\
+  \hline
+  \texttt{pred} &	&A	&A	&	&A	&\\
+  \texttt{dist} & 0	&90	&120	&$+\infty$	&135	&\\
+\end{tabular}
+
+\begin{tabular}{c|cccccc}
+  & \textbf{A}	&\textbf{B}	&C	&D	&E	& \\
+  \hline
+  \texttt{pred} &	&A	&A	&	&A	&\\
+  \texttt{dist} & 0	&90	&120	&$+\infty$	&135	&\\
+\end{tabular}
+
+\begin{tabular}{c|cccccc}
+  & \textbf{A}	&\textbf{B}	&\textbf{C}	&D	&E	& \\
+  \hline
+  \texttt{pred} &	&A	&A	&C	&A	&\\
+  \texttt{dist} & 0	&90	&120	&295	&135	&\\
+\end{tabular}
+
+\begin{tabular}{c|cccccc}
+  & \textbf{A}	&\textbf{B}	&\textbf{C}	&D	&\textbf{E}	& \\
+  \hline
+  \texttt{pred} &	&A	&A	&C	&A	&\\
+  \texttt{dist} & 0	&90	&120	&295	&135	&\\
+\end{tabular}
+
+\begin{tabular}{c|cccccc}
+  & \textbf{A}	&\textbf{B}	&\textbf{C}	&\textbf{D}	&\textbf{E}	& \\
+  \hline
+  \texttt{pred} &	&A	&A	&C	&A	&\\
+  \texttt{dist} & 0	&90	&120	&295	&135	&\\  
+\end{tabular}
+
+Pour obtenir un distancier, ce n'est pas la méthode la plus efficace car il faudrait recommencer au départ de chaque sommet, il vaut mieux utiliser l'algorithme de Bellman dans sa version matricielle qui donnera bien le résultat escompté. Alternativement,on peut utiliser l'algorithme de Roy-Warshall vu en TD. 
+
+La matrice d'adjacence pondérée s'écrit ainsi :
+
+\begin{equation}
+  M = \begin{pmatrix}
+    0 & 90 & 120 & +\infty & 135 \\
+    100 & 0 & +\infty & +\infty & 180 \\
+    140 & +\infty & 0 & 175 & +\infty \\
+    +\infty & 200 & +\infty & 0 & 95 \\
+    145 & 190 & 70 & +\infty & 0 \\
+  \end{pmatrix}
+\end{equation}
+
+Les itérations de l'algorithme de Bellman s'écrivent ensuite comme suit.
+
+$$
+M_1 =
+\begin{pmatrix}
+  0& 90& 120& +\infty& 135\\
+  100& 0& 220& +\infty& 180\\
+  140& 230& 0& 175& 275\\
+  +\infty& 200& +\infty& 0& 65\\
+  145& 190& 70& +\infty& 0\\
+  \end{pmatrix}
+$$
+
+$$
+M_2 =
+\begin{pmatrix}
+  0& 90& 120& +\infty& 135\\
+  100& 0& 220& +\infty& 180\\
+  140& 230& 0& 175& 275\\
+  300& 200& 420& 0& 65\\
+  145& 190& 70& +\infty& 0\\
+  \end{pmatrix}
+$$
+
+$$
+M_3 = 
+\begin{pmatrix}
+  0& 90& 120& 295& 135\\
+  100& 0& 220& 395& 180\\
+  140& 230& 0& 175& 275\\
+  300& 200& 420& 0& 65\\
+  145& 190& 70& 245& 0\\
+  \end{pmatrix}
+$$
+
+$$
+M_4 = 
+\begin{pmatrix}
+  0& 90& 120& 295& 135\\
+  100& 0& 220& 395& 180\\
+  140& 230& 0& 175& 240\\
+  300& 200& 420& 0& 65\\
+  145& 190& 70& 245& 0\\
+  \end{pmatrix}
+$$
+
+$$
+M_5 = 
+\begin{pmatrix}
+  0& 90& 120& 295& 135\\
+  100& 0& 220& 395& 180\\
+  140& 230& 0& 175& 240\\
+  210& 200& 135& 0& 65\\
+  145& 190& 70& 245& 0\\
+  \end{pmatrix}
+  $$
+
+Pour tenir compte de la durée des escales en un sommet du graphe, il suffit d'ajouter un sommet fictif et d'y ajouter un arc avec une pondération d'une heure. 
+
 \section{Débit réseau}
 
 On s'intéresse maintenant à un problème de réseau. Pour une visio-conférence, on doit envoyer des paquets de données d'un point A vers un point B. TCP/IP permettant un routage des paquets, les paquets de données peuvent circuler sur différentes connexions avec un débit différent. On fera l'hypothèse que les paquets arrivent en ordre. 
