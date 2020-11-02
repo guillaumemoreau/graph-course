@@ -415,12 +415,12 @@ def pp_topologique(G, listeSommets, x):
             \State dist \gets [0,$\infty$,...,$\infty$]
             \State $T$ \gets $S$, $P$ \gets $\{\}$
             \While{$T$ non vide}
-                \State Choisir $x_0 \in T$ tel que \texttt{dist} minimal
+                \State Choisir $x_0 \in T$ tel que \texttt{dist[$x0$]} minimal
                 \State $T$ \gets $T-\{ x_0 \}$, $P$ \gets $P \cup \{ x_0 \}$  
-                \For{$j \in \Gamma^+(i)$}
-                    \If{dist[i]+c(i,j) < dist[j]}
-                        \State dist[j] \gets dist[i]+c(i,j)
-                        \State pred[j] \gets i
+                \For{$x \in T$}
+                    \If{dist[$x_0$]+c($x_0$,x) < dist[$x$]}
+                        \State dist[$x$] \gets dist[$x_0$]+c($x_0$,$x$)
+                        \State pred[$x$] \gets $x_0$
                     \EndIf 
                 \EndFor
             \EndWhile
