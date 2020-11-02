@@ -2,6 +2,18 @@ import igraph as ig
 from network2tikz import plot
 import random 
 
+# graphe merdique pour FF 
+def build_exemple_ff2():
+    g = ig.Graph(4,[],True)
+    g.vs["name"] = ["s","1","2","t"]
+    g.add_edge(0,1)["c"] = 10000
+    g.add_edge(0,2)["c"] = 10000
+    g.add_edge(1,2)["c"] = 1
+    g.add_edge(1, 3)["c"] = 10000
+    g.add_edge(2, 3)["c"] = 10000
+
+    return g
+
 # exemple de graphe pour FF 
 def build_exemple_ff():
     g = ig.Graph(8,[],True)
