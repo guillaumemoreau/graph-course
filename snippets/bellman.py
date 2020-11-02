@@ -4,7 +4,7 @@ import igraph as ig
 from network2tikz import plot
 import mygraphs 
 import math 
-
+import numpy as np
 
 def bellman(G,s):
     for i in G.vs:
@@ -48,4 +48,33 @@ def bellman(G,s):
         for x in G.vs:
             x["dist"] = x["dist1"]
             x["pred"] = x["pred1"]
+
+def export_latex_matrix(M):
+    print('\\begin{pmatrix}')
+    n = np.shape(M)[0]
+    for i in range(0,n):
+        for j in range(0,n):
+            if j ==0:
+                s =  str(M[i,j])
+            else:
+                s = s + '& ' + str(M[i,j])
+        s = s + '\\\\'
+        print(s)
+    print('\\end{pmatrix}')
+
+def matrix_bellman(M):
+    n = np.shape(M)[0]
+    # mettre la diagonale à 0
+    for i in range(0,n):
+        M[i,i] = 0
+    for m in range(0,n):
+        for i in range(0,n):
+            for j in range(0,n):
+                #print(M[i,j])
+                #print(M[i, m]+M[m, j])
+                #print ('->')
+                #print(min(M[i, j], M[i, m]+M[m, j]))
+                M[i,j] = min (M[i,j],M[i,m]+M[m,j])
+        export_latex_matrix(M)
+        print('----')
 
