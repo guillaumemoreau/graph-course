@@ -43,6 +43,9 @@ def dijkstra(G,s):
                 str_pred = str_pred + '\t&'
             else:
                 str_pred = str_pred + x["pred"]["name"] + '\t&'
+        str_names = str_names+' \\\\'
+        str_pred = str_pred+'\\\\'
+        str_dist = str_dist+'\\\\'
         print(str_names)
         print('\hline')
         print(str_pred)
