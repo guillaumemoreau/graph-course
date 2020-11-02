@@ -50,7 +50,7 @@ def get_coupe(graphe):
             if b == 0:
                 coupe.append(s)
         print('taille S1 : '+str(len(coupe)))
-        if (len(coupe) > 0) & (len(coupe) < taille) & pas_de_rouge(graphe,coupe):
+        if (len(coupe) > 0) and (len(coupe) < taille) and pas_de_rouge(graphe,coupe):
             assert(len(coupe) < taille)
             print('ok at attempt:'+str(attempt))
             #draw_coupe(graphe,coupe,'tmp/coupe-'+str(ncoupe)+'.pdf')
