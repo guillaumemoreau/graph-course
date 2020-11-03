@@ -133,10 +133,9 @@ Toujours sous réserve de l'hypothèse des variables indépendantes, il faudrait
 
 \section{Voyages aériens}
 
-
 On pourrait utiliser l'algorithme de Dijkstra au départ de chaque sommet. On le fait ici \textbf{uniquement} à titre d'illustration.
 
-Le graphe est représenté figure~\label{fig:airline}.
+Le graphe est représenté figure~\ref{fig:airline}.
 
 \begin{figure}
   \begin{center}
@@ -259,18 +258,108 @@ Pour tenir compte de la durée des escales en un sommet du graphe, il suffit d'a
 
 \section{Débit réseau}
 
-On s'intéresse maintenant à un problème de réseau. Pour une visio-conférence, on doit envoyer des paquets de données d'un point A vers un point B. TCP/IP permettant un routage des paquets, les paquets de données peuvent circuler sur différentes connexions avec un débit différent. On fera l'hypothèse que les paquets arrivent en ordre. 
+On part du graphe à flot nul. 
 
-\begin{figure}[htbp]
+
+\begin{figure}[h]
 \begin{center}
-	\includegraphics[width=.8\textwidth]{graphe1.pdf}
+	\includegraphics[width=\textwidth]{figs/reseau.pdf}
+	\caption{Flot initial nul}
+	\label{fig:res:0}
 \end{center}
 \end{figure}
 
-\begin{enumerate}
-\item Calculer le débit maximum atteignable avec le réseau de la figure précédente.
-\item Quelle est la première liaison dont il faut augmenter le débit pour augmenter le débit global ?
-\end{enumerate}
+On choisit une première chaîne augmentante : A-B-H-T, on peut augmenter le flot du minimum des capacités, soit 16, ce qui donne le graphe suivant.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-1.pdf}
+	\caption{Première itération}
+	\label{fig:res:1}
+\end{center}
+\end{figure}
+
+On choisit ensuite une seconde chaîne augmentante, A-D-F-I-T qui permet d'augmenter le flot de 7.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-2.pdf}
+	\caption{Seconde itération}
+	\label{fig:res:2}
+\end{center}
+\end{figure}
+
+Troisième chaîne augmentante : A-B-E-G-T qui permet d'augmenter le flot de 8. 
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-3.pdf}
+	\caption{Troisième itération}
+	\label{fig:res:3}
+\end{center}
+\end{figure}
+
+Quatrième chaîne augmentante : A-C-H-T qui permet d'augmenter le flot de 14.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-4.pdf}
+	\caption{Quatrième itération}
+	\label{fig:res:4}
+\end{center}
+\end{figure}
+
+Le graphe devenant moins intuitif, on va appliquer l'algo de marquage compris dans l'algo général de Ford \& Fulkerson.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-4m.pdf}
+	\caption{Marquage après la quatrième itération}
+	\label{fig:res:4m}
+\end{center}
+\end{figure}
+
+Ce marquage permet de trouver une chaîne augmentante : A-D-H-E-G-T qui nous permet d'augmenter le flot de 12.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-5.pdf}
+	\caption{Cinquième itération}
+	\label{fig:res:5}
+\end{center}
+\end{figure}
+
+On recommence alors le marquage. 
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-5m.pdf}
+	\caption{Marquage après la cinquième itération}
+	\label{fig:res:5m}
+\end{center}
+\end{figure}
+
+Celui-ci nous donne une chaîne augmentante A-C-D-F-T qui permet d'augmenter le flot de 5.
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-6.pdf}
+	\caption{Sixième itération}
+	\label{fig:res:6}
+\end{center}
+\end{figure}
+
+On ré-applique l'algorithme de marquage. Le sommet $T$ n'étant pas marqué +, l'algorithme est terminé. On vérifie en traçant la coupe (cf figure), la capacité de celle-ci est de 62, ce qui correspond au flot que nous avons construit. Ouf !
+
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[width=\textwidth]{figs/reseau-6m.pdf}
+	\caption{Marquage après la sixième itération}
+	\label{fig:res:6m}
+\end{center}
+\end{figure}
+
+
 \section{Acheminement de passagers}
 
 Lors de la mise en place d'un voyage organisé, un vol charter est
