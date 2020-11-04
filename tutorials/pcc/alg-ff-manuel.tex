@@ -1,0 +1,23 @@
+\begin{tabbing}
+    \= xx \= xx \= xx \= xx \= xx \=
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\kill
+    \> Soit $x$ un flot admissible, marquer \textbf{+} le sommet $s$ \\
+    \> \textbf{Répéter} \\
+    \> \> \textbf{Si} $i$ est marqué et $j$ non marqué \textbf{Alors} \\
+    \> \> \> \textbf{Si} $(i,j)$ est un arc non saturé \textbf{Alors} \\
+    \> \> \> \> marquer $j$ avec \textbf{+} \\
+    \> \> \> \textbf{FinSi} \\
+    \> \> \> \textbf{Si} $(j,i)$ est un arc tel que $x_{ij} > 0$  \textbf{Alors} \\
+    \> \> \> \> marquer $j$ avec \textbf{-} \\
+    \> \> \> \textbf{FinSi} \\
+    \> \> \textbf{FinSi} \\
+    \> \textbf{Jusqu'à} ce qu'on ne puisse plus marquer de sommets \\
+    \> \textbf{Si} $t$ est marqué \textbf{Alors} \\
+    \> \> il existe une chaîne augmentante de $s$ à $t$ \\
+    \> \> augmenter le flot et recommencer \\
+    \> \textbf{Sinon} \\
+    \> \> le flot est maximal \\
+    \> \textbf{FinSi} \\
+  \end{tabbing}
+
+  
