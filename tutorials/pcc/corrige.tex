@@ -258,8 +258,13 @@ Pour tenir compte de la durée des escales en un sommet du graphe, il suffit d'a
 
 \section{Débit réseau}
 
-On part du graphe à flot nul. 
+On part du graphe à flot nul. Nous allons utiliser une variante \emph{manuelle} de l'algorithme de Ford \& Fulkerson : au lieu de chercher une chaine augmentante à partir du graphe résiduel, nous allons procéder en deux étapes :
+\begin{enumerate}
+  \item Rechercher les chaines augmentantes visuellement. Typiquement ce seront des chemins assez directs pour lesquels le flot n'est pas saturé ;
+  \item Puis, lorsqu'il n'y a plus de solution évidente de chaine augmentante, revenir à un algorithme de marquage : on marque + et - le sommet de départ, puis + les successeurs des sommets marqués + pour lequel l'arc reliant les deux sommets n'est pas saturé et - les prédécesseurs des sommets marqués pour lesquels l'arc reliant les deux sommets admet un flot non nul.
+\end{enumerate}
 
+Ce fonctionnement n'est pas optimal mais reste plus simple à mettre en \oe uvre quand on résout \emph{graphiquement} un problème de flot maximal.
 
 \begin{figure}[h]
 \begin{center}
