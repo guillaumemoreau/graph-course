@@ -1,0 +1,10 @@
+digraph PASS {
+  rankdir = LR
+  s -> Marseille [label = "[200] (0)"]
+  s -> Carpentras [label = "[400] (2)"]
+  Marseille -> Carpentras [label = "[200] (3)"]
+    Carpentras -> Paris [label = "[inf] (16)"]
+  Carpentras -> T [label = "[200] (9)"]
+  Marseille -> T [label = "[200] (12)"]
+  T -> Paris [label = "[300] (0)"]
+}
