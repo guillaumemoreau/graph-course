@@ -137,7 +137,7 @@
     \begin{definition}
         On appelle \emph{graphe résiduel} $G^r=(S,A^r)$ le graphe associé à une capacité et à un flot donné, avec $\forall a \in A$ :
         \begin{itemize}
-            \item si $f(a) < c(a)$ alors on ajoute $a$  $A^R$ avec $c^r(a) = c(a)-f(a)$
+            \item si $f(a) < c(a)$ alors on ajoute $a$ à $A^r$ avec $c^r(a) = c(a)-f(a)$
             \item si $f(a) > 0$ alors on ajoute $a$ \textbf{en sens inverse} dans $A^r$ avec une capacité égale à $f(a)$
         \end{itemize}
     \end{definition}
@@ -187,6 +187,18 @@
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Graphe d'écart ou graphe résiduel}
+\begin{itemize}
+    \item Par rapport à la notion de graphe résiduel vue précédemment, on ajoute les contraintes suivantes pour une augmentation de flot de $x$ :
+    \item Si $f(a) < c(a)$, on ajoute $a$ à $A^r$ avec $c^r(a)=c(a)-x$ et $d^r(a) = d(a)$
+    \item Si $f(a) > 0$, on ajoute un arc $b$ ($a$ en sens inverse) dans $A^r$ avec $c(b)=x$ et $d^r(b) = -d(a)$ 
+    \item Exemple ci dessous pour une augmentation de flot de 3 sur le chemin $(s,b,e,t)$
+\end{itemize}
+\begin{center}
+    \includegraphics[width=.6\textwidth]{fig/fmcm2.pdf}
+\end{center}
+\end{frame}
 
 \begin{frame}{Algorithme de Roy}
 \label{alg:roy}
